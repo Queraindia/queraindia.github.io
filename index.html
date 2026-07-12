@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -349,6 +350,123 @@
             font-weight: 600;
         }
 
+        .download-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 2500;
+            animation: fadeIn 0.25s ease forwards;
+        }
+
+        .download-modal.show {
+            display: flex;
+        }
+
+        .download-modal-card {
+            width: min(560px, 100%);
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 32px 28px 24px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            transform: translateY(20px) scale(0.97);
+            opacity: 0;
+            animation: modalRise 0.3s ease forwards;
+        }
+
+        .download-modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            border: 0;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .download-modal-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .download-modal-card p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .download-options {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .download-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 18px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.05);
+            color: var(--text-main);
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .download-option:hover {
+            transform: translateY(-2px) scale(1.01);
+            border-color: var(--primary);
+            box-shadow: 0 8px 22px rgba(0, 210, 255, 0.15);
+        }
+
+        .download-option strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .download-option small {
+            color: var(--text-muted);
+            display: block;
+        }
+
+        .download-option-primary {
+            background: linear-gradient(90deg, rgba(0, 210, 255, 0.16), rgba(58, 123, 213, 0.16));
+            border-color: rgba(0, 210, 255, 0.35);
+        }
+
+        .build-status {
+            margin-top: 18px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            background: rgba(0, 210, 255, 0.12);
+            color: #9fe9ff;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes modalRise {
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
         @media (max-width: 900px) {
             .hero {
                 flex-direction: column;
@@ -385,7 +503,7 @@
             <div class="nav-links">
                 <a href="#features">Features</a>
                 <a href="#gallery">Interface</a>
-                <a href="https://drive.google.com/file/d/1SFjnhwnB_4M61hb2ir68RnPM3guuh0w3/view" target="_blank" class="btn-download" style="padding: 10px 20px; font-size: 12px;">Download</a>
+                <a href="#" class="btn-download download-trigger" data-action="open-download-modal" style="padding: 10px 20px; font-size: 12px;">Download</a>
             </div>
         </nav>
 
@@ -394,7 +512,7 @@
                 <span class="hero-tagline">The Ultimate Music Experience</span>
                 <h1 class="hero-title">FEEL EVERY <span>BEAT.</span><br>NOT JUST HEAR IT.</h1>
                 <p class="hero-desc">Quera is a premium offline music player designed for true music lovers. Crystal-clear sound. Powerful features. Beautifully simple.</p>
-                <a href="https://drive.google.com/file/d/1SFjnhwnB_4M61hb2ir68RnPM3guuh0w3/view" target="_blank" class="btn-download">
+                <a href="#" class="btn-download download-trigger" data-action="open-download-modal">
                     <i class="fa-brands fa-windows"></i> Download for Windows
                 </a>
                 <p style="margin-top: 15px; font-size: 12px; color: var(--text-muted);"><i class="fa-brands fa-android"></i> Android version coming soon.</p>
@@ -476,10 +594,73 @@
         </footer>
     </div>
 
+    <div class="download-modal" id="downloadModal" aria-hidden="true">
+        <div class="download-modal-card">
+            <button class="download-modal-close" id="downloadModalClose" aria-label="Close">×</button>
+            <p class="hero-tagline" style="margin-bottom: 8px;">Choose your Windows build</p>
+            <h3>Select a version</h3>
+            <p>Pick the build that matches your system.</p>
+            <div class="download-options">
+                <a href="https://drive.google.com/file/d/1SFjnhwnB_4M61hb2ir68RnPM3guuh0w3/view" target="_blank" rel="noopener" class="download-option download-option-primary">
+                    <span>
+                        <strong>64-bit Build</strong>
+                        <small>97.8 MB • Recommended for most systems</small>
+                    </span>
+                    <i class="fa-brands fa-windows"></i>
+                </a>
+                <a href="https://drive.google.com/file/d/1ui2XHSkUQbMi9Jg6CEvHK8SnbWLQjsAe/view?usp=drive_link" target="_blank" rel="noopener" class="download-option">
+                    <span>
+                        <strong>32-bit Build</strong>
+                        <small>70.1 MB • For older or 32-bit systems</small>
+                    </span>
+                    <i class="fa-solid fa-download"></i>
+                </a>
+            </div>
+            <div class="build-status">
+                <i class="fa-solid fa-circle-check"></i> Quera build has been successfully completed, and updates will be given from time to time.
+            </div>
+        </div>
+    </div>
+
     <script>
         window.addEventListener('load', () => {
             document.body.classList.remove('loading');
             document.body.classList.add('loaded');
+        });
+
+        const modal = document.getElementById('downloadModal');
+        const modalClose = document.getElementById('downloadModalClose');
+        const openTriggers = document.querySelectorAll('.download-trigger');
+
+        const openModal = () => {
+            modal.classList.add('show');
+            modal.setAttribute('aria-hidden', 'false');
+        };
+
+        const closeModal = () => {
+            modal.classList.remove('show');
+            modal.setAttribute('aria-hidden', 'true');
+        };
+
+        openTriggers.forEach((trigger) => {
+            trigger.addEventListener('click', (event) => {
+                event.preventDefault();
+                openModal();
+            });
+        });
+
+        modalClose.addEventListener('click', closeModal);
+
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
         });
     </script>
 </body>
