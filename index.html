@@ -6,618 +6,659 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quera | The Ultimate Music Experience by SKD STUDIOS</title>
     
-    <!-- Google Fonts for the Google-like typography -->
+    <!-- Premium Fonts: Inter for UI, Google Sans style aesthetics -->
     <link rel="icon" type="image/x-icon" href="ChatGPT Image Jul 2, 2026, 04_21_56 PM.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            /* Google Dark Theme Palette */
-            --bg-dark: #000000;
-            --bg-surface: #131314;
-            --bg-surface-elevated: #1e1e1f;
-            --border-color: rgba(255, 255, 255, 0.1);
+            /* Deep Dark Tech Palette */
+            --bg-base: #000000;
+            --bg-surface: #0e0e11;
+            --bg-surface-elevated: #1a1a1f;
+            --border-glow: rgba(255, 255, 255, 0.08);
             
-            /* Quera Brand Colors adapted to Google style */
-            --quera-blue: #4285F4;
-            --quera-cyan: #00d2ff;
-            --quera-purple: #9b72cb;
+            /* Quera Brand Accents */
+            --q-blue: #4285F4;
+            --q-cyan: #00d2ff;
+            --q-purple: #9b72cb;
+            --q-neon: #7C3AED;
             
-            --text-primary: #e8eaed;
-            --text-secondary: #9aa0a6;
+            --text-main: #f8f9fa;
+            --text-muted: #9aa0a6;
             
+            --radius-sm: 16px;
+            --radius-md: 28px;
+            --radius-lg: 40px;
             --radius-pill: 100px;
-            --radius-card: 28px;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', 'Google Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-primary);
+            background-color: var(--bg-base);
+            color: var(--text-main);
             overflow-x: hidden;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
 
         /* --- GOOGLE STYLE RADIAL GLOW --- */
-        .radial-glow {
+        .ambient-background {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100vw;
-            height: 100vh;
-            background: radial-gradient(circle at 30% 30%, rgba(66, 133, 244, 0.15) 0%, transparent 40%),
-                        radial-gradient(circle at 70% 70%, rgba(155, 114, 203, 0.12) 0%, transparent 40%),
-                        radial-gradient(circle at 50% 50%, rgba(0, 210, 255, 0.08) 0%, transparent 50%);
-            filter: blur(60px);
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(66, 133, 244, 0.12), transparent 40%),
+                radial-gradient(circle at 85% 30%, rgba(155, 114, 203, 0.12), transparent 40%),
+                radial-gradient(circle at 50% 80%, rgba(0, 210, 255, 0.08), transparent 50%);
+            filter: blur(80px);
             z-index: -1;
             pointer-events: none;
         }
 
-        /* --- NAVBAR --- */
+        /* --- PREMIUM NAVBAR --- */
         nav {
             position: fixed;
-            top: 0;
-            width: 100%;
+            top: 0; width: 100%;
             padding: 16px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(0, 0, 0, 0.65);
+            background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-glow);
             z-index: 1000;
+            transition: all 0.3s ease;
         }
 
-        .logo-container {
+        .logo-group {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
         }
 
-        .logo-container .app-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
+        .logo-group .icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 210, 255, 0.2);
         }
 
-        .logo-container .text-logo {
-            height: 48px;
-            object-fit: contain;
-        }
+        .logo-group .wordmark { height: 48px; }
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-        }
-
-        .nav-links a.text-link {
-            color: var(--text-primary);
+        .nav-actions a {
+            color: var(--text-main);
             text-decoration: none;
-            font-size: 14px;
             font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .nav-links a.text-link:hover {
-            color: var(--quera-cyan);
-        }
-
-        .btn-download {
-            background: var(--text-primary);
-            color: var(--bg-dark);
-            padding: 10px 24px;
-            border-radius: var(--radius-pill);
-            text-decoration: none;
             font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            margin-left: 32px;
+            transition: color 0.3s;
+        }
+        .nav-actions a:hover { color: var(--q-cyan); }
+
+        .btn-primary {
+            background: var(--text-main);
+            color: var(--bg-base) !important;
+            padding: 12px 28px;
+            border-radius: var(--radius-pill);
+            font-weight: 700 !important;
             border: 1px solid transparent;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--text-main) !important;
+            border-color: var(--text-main);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255,255,255,0.1);
         }
 
-        .btn-download:hover {
-            background: transparent;
-            color: var(--text-primary);
-            border-color: var(--border-color);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        /* --- SCROLL ANIMATION CLASSES --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* --- HERO SECTION --- */
         .hero {
-            padding: 160px 5% 80px;
+            padding: 180px 5% 100px;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
         }
 
-        .badge-google {
-            background: var(--bg-surface-elevated);
-            border: 1px solid var(--border-color);
-            padding: 6px 16px;
-            border-radius: var(--radius-pill);
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .badge-google span {
-            width: 8px;
-            height: 8px;
-            background: var(--quera-cyan);
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 10px var(--quera-cyan);
-        }
-
         .hero h1 {
-            font-size: clamp(48px, 8vw, 80px);
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            line-height: 1.1;
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(48px, 8vw, 90px);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
             margin-bottom: 24px;
         }
 
         .hero h1 span {
-            background: linear-gradient(135deg, var(--quera-blue), var(--quera-purple), var(--quera-cyan));
+            background: linear-gradient(135deg, var(--q-blue), var(--q-purple), var(--q-cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 20px;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin-bottom: 40px;
-            font-weight: 400;
+            font-size: 22px;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 50px;
         }
 
-        /* --- INTERACTIVE VIDEO CONTAINER --- */
-        .video-wrapper {
-            position: relative;
+        /* --- VIDEO SHOWCASE (Locked & Interactive) --- */
+        .video-showcase {
             width: 100%;
-            max-width: 1000px;
-            border-radius: var(--radius-card);
-            padding: 8px;
+            max-width: 1100px;
             background: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
-            cursor: pointer; /* Indicates it is clickable */
+            border: 1px solid var(--border-glow);
+            border-radius: var(--radius-lg);
+            padding: 12px;
+            position: relative;
+            box-shadow: 0 40px 120px rgba(0,0,0,0.9), inset 0 0 40px rgba(255,255,255,0.02);
+            cursor: pointer;
             overflow: hidden;
-            margin-bottom: 40px;
-            transition: transform 0.3s ease;
-        }
-        
-        .video-wrapper:hover {
-            transform: scale(1.01);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .video-wrapper video {
+        .video-showcase:hover {
+            transform: scale(1.02);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .video-showcase video {
             width: 100%;
-            border-radius: 20px;
+            border-radius: calc(var(--radius-lg) - 12px);
             display: block;
             background: #000;
-            pointer-events: none; /* Passes click to wrapper */
+            pointer-events: none;
         }
         
-        /* Hides native controls completely */
-        .video-wrapper video::-webkit-media-controls {
+        .video-showcase video::-webkit-media-controls {
             display: none !important;
         }
 
-        .audio-indicator {
+        .sound-indicator {
             position: absolute;
-            bottom: 30px;
-            right: 30px;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(10px);
-            padding: 12px 20px;
+            bottom: 40px;
+            right: 40px;
+            background: rgba(10, 10, 10, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 14px 24px;
             border-radius: var(--radius-pill);
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 14px;
-            font-weight: 500;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: opacity 0.3s;
+            gap: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             pointer-events: none;
+            transition: all 0.3s ease;
         }
 
-        /* --- QUERA ATMOSPHERE™ FEATURE (Metallic Shine) --- */
+        /* --- QUERA ATMOSPHERE™ --- */
         .atmosphere-section {
-            padding: 40px 5% 80px;
+            padding: 60px 5% 120px;
             display: flex;
             justify-content: center;
         }
 
         .atmosphere-card {
             background: var(--bg-surface);
-            border: 1px solid rgba(155, 114, 203, 0.4);
-            border-radius: var(--radius-card);
-            padding: 60px 40px;
+            border: 1px solid rgba(155, 114, 203, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 80px 5%;
             width: 100%;
             max-width: 1200px;
             text-align: center;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(155, 114, 203, 0.1);
+            box-shadow: 0 30px 80px rgba(155, 114, 203, 0.15);
         }
 
-        /* Glossy Center Metallic Shine - Moving Left to Right */
-        .atmosphere-card::after {
+        /* Glossy Center Metallic Shine */
+        .atmosphere-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -150%;
-            width: 50%;
-            height: 100%;
+            top: 0; left: -150%;
+            width: 50%; height: 100%;
             background: linear-gradient(90deg, 
                 transparent 0%, 
-                rgba(255, 255, 255, 0.03) 30%, 
-                rgba(255, 255, 255, 0.15) 50%, 
-                rgba(255, 255, 255, 0.03) 70%, 
+                rgba(255, 255, 255, 0.05) 30%, 
+                rgba(255, 255, 255, 0.2) 50%, 
+                rgba(255, 255, 255, 0.05) 70%, 
                 transparent 100%);
             transform: skewX(-25deg);
-            animation: metallicShine 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+            animation: glossShine 5s infinite cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: none;
+            z-index: 1;
         }
 
-        @keyframes metallicShine {
+        @keyframes glossShine {
             0% { left: -100%; }
-            20% { left: 200%; }
-            100% { left: 200%; } /* Pauses before looping */
+            30% { left: 200%; }
+            100% { left: 200%; }
         }
 
         .atmosphere-card h2 {
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            background: linear-gradient(to right, #fff, var(--quera-purple));
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, var(--q-cyan), var(--q-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 2;
         }
 
         .atmosphere-card p {
-            color: var(--text-secondary);
-            font-size: 18px;
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.7;
+            color: var(--text-muted);
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            position: relative;
+            z-index: 2;
         }
 
-        /* --- OTHER FEATURES (Google Grid) --- */
+        .atmosphere-img {
+            width: 100%;
+            max-width: 800px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-glow);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* --- BENTO GRID FEATURES --- */
         .features-grid {
-            padding: 0 5% 100px;
+            padding: 0 5% 120px;
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 24px;
         }
 
-        .feature-card {
+        .bento-card {
             background: var(--bg-surface);
-            padding: 40px;
-            border-radius: var(--radius-card);
-            border: 1px solid var(--border-color);
-            transition: background 0.3s;
+            padding: 48px 40px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-glow);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .feature-card:hover {
+        .bento-card:hover {
             background: var(--bg-surface-elevated);
+            border-color: rgba(0, 210, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
-        .feature-icon {
-            font-size: 32px;
-            color: var(--quera-blue);
+        .bento-icon {
+            font-size: 36px;
+            background: linear-gradient(135deg, var(--q-cyan), var(--q-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 24px;
         }
 
-        .feature-card h3 {
-            font-size: 20px;
-            font-weight: 600;
+        .bento-card h3 {
+            font-size: 22px;
+            font-weight: 700;
             margin-bottom: 12px;
-            color: var(--text-primary);
         }
 
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 15px;
-            line-height: 1.6;
+        .bento-card p {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.7;
         }
 
-        /* --- GALLERY --- */
+        /* --- PREMIUM GALLERY --- */
         .gallery-section {
-            padding: 0 5% 100px;
-            max-width: 1200px;
+            padding: 0 5% 120px;
+            max-width: 1300px;
             margin: 0 auto;
         }
 
-        .gallery-title {
-            font-size: 36px;
+        .section-heading {
+            font-family: 'Outfit', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
             text-align: center;
             margin-bottom: 60px;
-            font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
-        .main-poster {
-            width: 100%;
-            border-radius: var(--radius-card);
-            margin-bottom: 24px;
-            border: 1px solid var(--border-color);
-        }
-
-        .gallery-grid {
+        .gallery-masonry {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 24px;
         }
 
-        .gallery-grid img {
+        .gallery-item {
             width: 100%;
-            border-radius: var(--radius-card);
-            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-glow);
             background: var(--bg-surface);
+            transition: transform 0.4s ease, border-color 0.4s ease;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            border-color: var(--q-purple);
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+            margin-bottom: 24px;
         }
 
         /* --- FOOTER --- */
         footer {
-            border-top: 1px solid var(--border-color);
-            padding: 60px 5%;
+            border-top: 1px solid var(--border-glow);
+            padding: 80px 5% 40px;
             text-align: center;
-            background: var(--bg-dark);
+            background: var(--bg-base);
         }
 
         .footer-logo {
-            height: 32px;
-            margin-bottom: 20px;
-            opacity: 0.8;
+            height: 40px;
+            margin-bottom: 24px;
+            opacity: 0.9;
         }
 
         .made-in-india {
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            background: var(--bg-surface);
+            background: rgba(255,255,255,0.05);
             padding: 12px 24px;
             border-radius: var(--radius-pill);
             font-size: 14px;
-            font-weight: 500;
-            border: 1px solid var(--border-color);
-            margin-top: 24px;
-            color: var(--text-secondary);
+            font-weight: 600;
+            border: 1px solid var(--border-glow);
+            margin: 30px 0;
+            color: var(--text-main);
         }
 
-        /* --- MODAL (Google Style Dialog) --- */
+        /* --- DOWNLOAD MODAL (NO BLUR) --- */
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(4px);
-            display: none;
+            background: rgba(0, 0, 0, 0.92); /* Solid dark overlay, no blur */
+            display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 2000;
-            padding: 20px;
+            z-index: 2500;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
         }
 
         .modal-overlay.active {
-            display: flex;
-            animation: fadeIn 0.2s ease;
+            opacity: 1;
+            visibility: visible;
         }
 
         .modal-card {
-            background: var(--bg-surface-elevated);
+            background: #111114;
             width: 100%;
-            max-width: 500px;
-            border-radius: 28px;
-            padding: 32px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+            max-width: 520px;
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.9), inset 0 0 40px rgba(255,255,255,0.03);
             position: relative;
+            transform: scale(0.95) translateY(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1) translateY(0);
         }
 
         .modal-close {
             position: absolute;
             top: 24px;
             right: 24px;
-            background: transparent;
+            background: rgba(255,255,255,0.05);
             border: none;
-            color: var(--text-secondary);
-            font-size: 24px;
+            color: var(--text-muted);
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
             cursor: pointer;
+            transition: 0.2s;
         }
+        .modal-close:hover { background: rgba(255,255,255,0.15); color: #fff; }
 
         .modal-card h3 {
-            font-size: 24px;
-            margin-bottom: 12px;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            font-family: 'Outfit', sans-serif;
         }
 
-        .download-btn-option {
+        .download-option {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 16px 20px;
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            margin-bottom: 12px;
+            padding: 20px 24px;
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-glow);
+            border-radius: var(--radius-md);
+            margin-bottom: 16px;
             text-decoration: none;
-            color: var(--text-primary);
-            transition: 0.2s;
+            color: var(--text-main);
+            transition: all 0.3s ease;
         }
 
-        .download-btn-option:hover {
-            background: rgba(66, 133, 244, 0.1);
-            border-color: var(--quera-blue);
+        .download-option:hover {
+            background: rgba(0, 210, 255, 0.1);
+            border-color: var(--q-cyan);
+            transform: translateY(-2px);
+        }
+        
+        .ms-store-option:hover {
+            background: rgba(0, 164, 239, 0.1);
+            border-color: #00a4ef;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.98); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 40px; }
-            .gallery-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 42px; }
+            .gallery-masonry { grid-template-columns: 1fr; }
+            .atmosphere-card { padding: 40px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Radial Glow Background -->
-    <div class="radial-glow"></div>
+    <!-- Radial Glowing Background -->
+    <div class="ambient-background"></div>
 
-    <!-- Navigation -->
+    <!-- Nav -->
     <nav>
-        <div class="logo-container">
-            <img src="ChatGPT Image Jul 2, 2026, 04_21_56 PM.ico" alt="Quera" class="app-icon">
-            <img src="4d671de2-53ec-4c7b-ae91-8d1fd760911d.png" alt="Quera By SKD Studios" class="text-logo">
+        <div class="logo-group">
+            <img src="ChatGPT Image Jul 2, 2026, 04_21_56 PM.ico" alt="Quera" class="icon">
+            <img src="4d671de2-53ec-4c7b-ae91-8d1fd760911d.png" alt="Quera By SKD Studios" class="wordmark">
         </div>
-        <div class="nav-links">
-            <a href="#features" class="text-link">Features</a>
-            <a href="#" class="btn-download" onclick="openModal(event)">Download</a>
+        <div class="nav-actions">
+            <a href="#features" class="hide-mobile">Features</a>
+            <a href="#" class="btn-primary" onclick="openModal(event)">Download</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="badge-google">
-            <span></span> New: Atmosphere Engine
-        </div>
+    <section class="hero reveal">
         <h1>The Ultimate<br><span>Music Experience.</span></h1>
         <p>Quera is a premium offline music player designed for true audiophiles. Crystal-clear sound. Powerful features. Beautifully simple.</p>
         
-        <!-- Video Locked (No Controls), Autoplay, Click to Unmute -->
-        <div class="video-wrapper" id="videoContainer">
+        <!-- Video Locked (No Native Controls), Autoplay, Click to Unmute -->
+        <div class="video-showcase" id="videoWrapper">
             <video id="promoVideo" src="Videoweb.mp4" autoplay loop muted playsinline></video>
-            <div class="audio-indicator" id="audioIndicator">
+            <div class="sound-indicator" id="soundIndicator">
                 <i class="fa-solid fa-volume-xmark"></i> Click for Sound
             </div>
         </div>
 
-        <a href="#" class="btn-download" style="padding: 16px 32px; font-size: 16px; display: inline-flex; gap: 10px; align-items: center;" onclick="openModal(event)">
+        <button class="btn-primary" style="padding: 16px 40px; font-size: 16px; display: inline-flex; gap: 12px; align-items: center;" onclick="openModal(event)">
             <i class="fa-brands fa-windows"></i> Download for Windows
-        </a>
-        <p style="font-size: 13px; color: var(--text-secondary); margin-top: 16px;">Android version coming soon.</p>
+        </button>
+        <p style="font-size: 14px; color: var(--text-muted); margin-top: 20px;">Android version coming soon.</p>
     </section>
 
-    <!-- TOP FEATURE: Quera Atmosphere™ -->
-    <section class="atmosphere-section" id="features">
+    <!-- NEW FEATURE: Quera Atmosphere™ (With Metallic Shine) -->
+    <section class="atmosphere-section reveal" id="features">
         <div class="atmosphere-card">
-            <div style="font-size: 40px; color: var(--quera-purple); margin-bottom: 20px;">
-                <i class="fa-solid fa-headphones"></i>
+            <div style="font-size: 48px; color: var(--q-purple); margin-bottom: 24px;">
+                <i class="fa-solid fa-compact-disc fa-spin-pulse"></i>
             </div>
             <h2>Quera Atmosphere™</h2>
             <p>Our proprietary Immersive Audio Engine. Turn it on to widen the soundstage and transform standard stereo playback into a breathtaking, three-dimensional premium listening experience directly from your local files.</p>
-            <img src="image_03ad98.jpg" alt="Atmosphere UI" style="width: 100%; max-width: 600px; border-radius: 16px; margin-top: 40px; border: 1px solid rgba(255,255,255,0.1);">
+            <img src="image_03ad98.jpg" alt="Atmosphere Interface" class="atmosphere-img">
         </div>
     </section>
 
-    <!-- Standard Features Grid -->
-    <section class="features-grid">
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fa-solid fa-wave-square"></i></div>
+    <!-- All 6 Original Features in a Premium Grid -->
+    <section class="features-grid reveal">
+        <div class="bento-card">
+            <div class="bento-icon"><i class="fa-solid fa-wave-square"></i></div>
             <h3>Hi-Res Audio Engine</h3>
-            <p>Experience studio-quality sound with our custom Hi-Res Engine, designed for bit-perfect flat playback.</p>
+            <p>Experience studio-quality sound with our custom Hi-Res Engine, designed for bit-perfect flat playback[cite: 2].</p>
         </div>
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fa-solid fa-sliders"></i></div>
+        <div class="bento-card">
+            <div class="bento-icon"><i class="fa-solid fa-sliders"></i></div>
             <h3>10-Band Equalizer</h3>
-            <p>Fine-tune every frequency. Customize your listening experience precisely the way you want it.</p>
+            <p>Fine-tune every frequency. Customize your listening experience precisely the way you want it[cite: 2].</p>
         </div>
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+        <div class="bento-card">
+            <div class="bento-icon"><i class="fa-solid fa-microphone-lines"></i></div>
             <h3>Studio DSP</h3>
-            <p>Advanced Digital Signal Processing featuring Direct Monitor, Sub-Bass Punch, and Vocal Clarity boosters.</p>
+            <p>Advanced Digital Signal Processing featuring Direct Monitor, Sub-Bass Punch, and Vocal Clarity boosters[cite: 2].</p>
         </div>
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="bento-card">
+            <div class="bento-icon"><i class="fa-solid fa-shield-halved"></i></div>
             <h3>100% Private & Offline</h3>
-            <p>No ads. Pure experience. Your data stays private. Add files, scan folders, and play anywhere entirely offline.</p>
+            <p>No ads. Pure experience. Your data stays private. Add files, scan folders, and play anywhere entirely offline[cite: 2].</p>
+        </div>
+        <div class="bento-card">
+            <div class="bento-icon"><i class="fa-solid fa-bolt"></i></div>
+            <h3>Lightweight & Fast</h3>
+            <p>Smooth, sleek, and exceptionally reliable. Optimized to consume minimal system resources while delivering maximum performance[cite: 2].</p>
+        </div>
+        <div class="bento-card">
+            <div class="bento-icon"><i class="fa-solid fa-headphones-simple"></i></div>
+            <h3>Spatial Audio</h3>
+            <p>Immerse yourself in 3D sound that surrounds you, bringing your favorite tracks to life like never before[cite: 2].</p>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="gallery-section" id="gallery">
-        <h2 class="gallery-title">Beautifully simple.</h2>
-        <img src="1.png" alt="Quera Promo" class="main-poster">
-        <div class="gallery-grid">
-            <img src="2.png" alt="Quera Player View 1">
-            <img src="4.png" alt="Quera Player View 2">
-            <img src="3.png" alt="Quera Player View 3">
-            <img src="image_03ad98.jpg" alt="Quera Player View 4">
+    <!-- Premium Gallery -->
+    <section class="gallery-section reveal">
+        <h2 class="section-heading">A Glimpse of Perfection.</h2>
+        <img src="1.png" alt="Quera Promo" class="gallery-item full-width">
+        <div class="gallery-masonry">
+            <img src="2.png" alt="Quera Player View 1" class="gallery-item">
+            <img src="4.png" alt="Quera Player View 2" class="gallery-item">
+            <img src="3.png" alt="Quera Player View 3" class="gallery-item full-width" style="height: auto;">
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="reveal">
         <img src="image_ac4cca.png" alt="Quera Logo" class="footer-logo">
-        <div style="color: var(--text-secondary); font-size: 14px;">
-            <p>Developed by <strong>Samarth Dwivedi</strong> & <strong>Quera INDIA LTD</strong></p>
-            <p>This project is currently under development and is expected to be completed by <strong>15 July.</strong></p>
+        <div style="color: var(--text-muted); font-size: 15px;">
+            <p>Developed by <strong style="color:#fff;">Samarth Dwivedi</strong> & <strong style="color:#fff;">Quera INDIA LTD</strong></p>
+            <p>This project is currently under development and is expected to be completed by <strong style="color:#fff;">15 July.</strong></p>
         </div>
         <div class="made-in-india">
-            <i class="fa-solid fa-heart" style="color: #ea4335;"></i> Made in India
+            <i class="fa-solid fa-heart" style="color: #ea4335;"></i> Made in India • Made for You
         </div>
-        <p style="margin-top: 40px; font-size: 12px; color: #5f6368;">&copy; 2026 Quera India Ltd. All rights reserved.</p>
+        <p style="margin-top: 20px; font-size: 13px; color: #555;">&copy; 2026 Quera India Ltd. All rights reserved.</p>
     </footer>
 
-    <!-- Download Modal -->
+    <!-- Heavy / Google-style Download Modal (No Blur Overlay) -->
     <div class="modal-overlay" id="downloadModal">
         <div class="modal-card">
             <button class="modal-close" onclick="closeModal()">×</button>
-            <p style="color: var(--quera-blue); font-weight: 600; font-size: 12px; margin-bottom: 8px;">WINDOWS BUILDS</p>
-            <h3>Select a version</h3>
-            <p style="color: var(--text-secondary); margin-bottom: 24px;">Pick the build that matches your system architecture.</p>
+            <p style="color: var(--q-cyan); font-weight: 700; font-size: 13px; letter-spacing: 1px; margin-bottom: 8px;">CHOOSE BUILD</p>
+            <h3>Download Quera</h3>
+            <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 15px;">Pick how you'd like to install Quera for Windows.</p>
             
-            <a href="https://drive.google.com/file/d/1SFjnhwnB_4M61hb2ir68RnPM3guuh0w3/view" target="_blank" class="download-btn-option">
+            <!-- Open in MS Store App -->
+            <a href="ms-windows-store://pdp/?productid=9MV19RJ2L1HK" class="download-option ms-store-option" style="padding: 16px 24px;">
                 <div>
-                    <strong style="display: block; margin-bottom: 4px;">64-bit Build (Recommended)</strong>
-                    <small style="color: var(--text-secondary);">97.8 MB</small>
+                    <strong style="display: block; font-size: 18px; margin-bottom: 6px;">Microsoft Store App</strong>
+                    <span style="color: var(--text-muted); font-size: 14px;">Fast, secure, automatic updates</span>
                 </div>
-                <i class="fa-brands fa-windows" style="font-size: 20px; color: var(--quera-cyan);"></i>
+                <img src="https://developer.microsoft.com/en-us/store/badges/images/English_get-it-from-MS.png" alt="Get it from Microsoft Store" style="height: 40px; border-radius: 4px;">
             </a>
-            
-            <a href="https://drive.google.com/file/d/1ui2XHSkUQbMi9Jg6CEvHK8SnbWLQjsAe/view?usp=drive_link" target="_blank" class="download-btn-option">
+
+            <!-- MS Web Store -->
+            <a href="https://apps.microsoft.com/detail/9MV19RJ2L1HK" target="_blank" class="download-option">
                 <div>
-                    <strong style="display: block; margin-bottom: 4px;">32-bit Build</strong>
-                    <small style="color: var(--text-secondary);">70.1 MB • For older systems</small>
+                    <strong style="display: block; font-size: 18px; margin-bottom: 6px;">Microsoft Web Store</strong>
+                    <span style="color: var(--text-muted); font-size: 14px;">View app details in your browser</span>
                 </div>
-                <i class="fa-solid fa-download" style="font-size: 20px; color: var(--text-secondary);"></i>
+                <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 20px; color: var(--text-muted);"></i>
             </a>
+
+            <!-- 64-bit Direct Download -->
+            <a href="https://drive.google.com/file/d/1SFjnhwnB_4M61hb2ir68RnPM3guuh0w3/view" target="_blank" class="download-option">
+                <div>
+                    <strong style="display: block; font-size: 18px; margin-bottom: 6px;">64-bit Build (Direct)</strong>
+                    <span style="color: var(--text-muted); font-size: 14px;">97.8 MB • Manual Installation</span>
+                </div>
+                <i class="fa-brands fa-windows" style="font-size: 24px; color: var(--q-cyan);"></i>
+            </a>
+
+            <div style="margin-top: 24px; padding: 16px; border-radius: 12px; background: rgba(0, 210, 255, 0.1); border: 1px solid rgba(0, 210, 255, 0.2); color: #9fe9ff; font-size: 14px; display: flex; gap: 12px; align-items: flex-start;">
+                <i class="fa-solid fa-circle-check" style="margin-top: 3px;"></i> 
+                Quera build has been successfully completed, and updates will be given from time to time.
+            </div>
         </div>
     </div>
 
-    <!-- Scripts for Video Toggle and Modal -->
+    <!-- Scripts for Video Interactivity, Scroll Animations & Modal -->
     <script>
-        // Video Interaction Logic
-        const videoWrapper = document.getElementById('videoContainer');
+        // 1. VIDEO LOGIC (Locked, Click to Unmute)
+        const videoWrapper = document.getElementById('videoWrapper');
         const video = document.getElementById('promoVideo');
-        const indicator = document.getElementById('audioIndicator');
+        const indicator = document.getElementById('soundIndicator');
 
         videoWrapper.addEventListener('click', () => {
             if (video.muted) {
                 video.muted = false;
                 indicator.innerHTML = '<i class="fa-solid fa-volume-high"></i> Sound On';
-                indicator.style.color = 'var(--quera-cyan)';
-                indicator.style.borderColor = 'var(--quera-cyan)';
+                indicator.style.color = '#fff';
+                indicator.style.background = 'var(--q-blue)';
+                indicator.style.borderColor = 'var(--q-blue)';
                 
-                // Hide indicator after 2 seconds
+                // Auto hide indicator after 2 seconds
                 setTimeout(() => {
                     indicator.style.opacity = '0';
                 }, 2000);
@@ -625,27 +666,49 @@
                 video.muted = true;
                 indicator.style.opacity = '1';
                 indicator.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> Click for Sound';
-                indicator.style.color = 'white';
-                indicator.style.borderColor = 'rgba(255,255,255,0.2)';
+                indicator.style.background = 'rgba(10, 10, 10, 0.75)';
+                indicator.style.borderColor = 'rgba(255,255,255,0.15)';
             }
         });
 
-        // Modal Logic
+        // 2. MODAL LOGIC
         const modal = document.getElementById('downloadModal');
-        
         function openModal(e) {
             e.preventDefault();
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-        
         function closeModal() {
             modal.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
-
         modal.addEventListener('click', (e) => {
             if(e.target === modal) closeModal();
+        });
+
+        // 3. SCROLL REVEAL ANIMATIONS
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        setTimeout(() => {
+            document.querySelector('.hero').classList.add('active');
+        }, 100);
+
+        document.querySelectorAll('.reveal').forEach(section => {
+            if(!section.classList.contains('hero')){
+                observer.observe(section);
+            }
         });
     </script>
 </body>
