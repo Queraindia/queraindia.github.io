@@ -427,6 +427,10 @@
             background: #111114;
             width: 100%;
             max-width: 520px;
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
             border-radius: var(--radius-lg);
             padding: 40px;
             border: 1px solid rgba(255,255,255,0.1);
@@ -434,6 +438,12 @@
             position: relative;
             transform: scale(0.95) translateY(20px);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modal-card::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
         }
 
         .modal-overlay.active .modal-card {
@@ -480,6 +490,15 @@
             background: rgba(0, 210, 255, 0.1);
             border-color: var(--q-cyan);
             transform: translateY(-2px);
+        }
+
+        .download-logo {
+            width: 44px;
+            height: 44px;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+            flex-shrink: 0;
         }
         
         .ms-store-option:hover {
@@ -593,7 +612,7 @@
         <img src="image_ac4cca.png" alt="Quera Logo" class="footer-logo">
         <div style="color: var(--text-muted); font-size: 15px;">
             <p>Developed by <strong style="color:#fff;">Samarth Dwivedi</strong> & <strong style="color:#fff;">Quera INDIA LTD</strong></p>
-            <p>This project is currently under development and is expected to be completed by <strong style="color:#fff;">15 July.</strong></p>
+            <p>SDTECHSOLUTIONS OWNED ALL RIGHTS OF <strong style="color:#fff;">QUERA ATMOSPHERE™ & QUERA MUSIC.<</strong></p>
         </div>
         <div class="made-in-india">
             <i class="fa-solid fa-heart" style="color: #ea4335;"></i> Made in India • Made for You
@@ -628,12 +647,21 @@
             </a>
 
             <!-- 64-bit Direct Download -->
-            <a href="https://drive.google.com/file/d/1SFjnhwnB_4M61hb2ir68RnPM3guuh0w3/view" target="_blank" class="download-option">
+            <a href="https://release-assets.githubusercontent.com/github-production-release-asset/1314118677/bf421bc8-7804-4433-9f5a-6b65b6a20579?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-08-09T18%3A17%3A44Z&rscd=attachment%3B+filename%3DQuera.Music.Setup.1.22.0.exe&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-08-09T17%3A17%3A18Z&ske=2026-08-09T18%3A17%3A44Z&sks=b&skv=2018-11-09&sig=5BP6QOo22UvPDsi9DAftgO32O6KvhIp9HYlN%2BVP5w3Q%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4NjI5ODE0NCwibmJmIjoxNzg2Mjk2MzQ0LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.M_UqRpDyvdMslE8_mMaXR5o4zPPnKAguoHucWJFkWvk&response-content-disposition=attachment%3B%20filename%3DQuera.Music.Setup.1.22.0.exe&response-content-type=application%2Foctet-stream" target="_blank" class="download-option">
                 <div>
                     <strong style="display: block; font-size: 18px; margin-bottom: 6px;">64-bit Build (Direct)</strong>
                     <span style="color: var(--text-muted); font-size: 14px;">97.8 MB • Manual Installation</span>
                 </div>
                 <i class="fa-brands fa-windows" style="font-size: 24px; color: var(--q-cyan);"></i>
+            </a>
+
+            <!-- 32-bit Windows 7 Direct Download -->
+            <a href="https://release-assets.githubusercontent.com/github-production-release-asset/1314931759/4b8e68b8-dcb8-4af8-ae83-3d2f35c51a15?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-08-09T17%3A42%3A59Z&rscd=attachment%3B+filename%3DQuera.Music.Setup.1.22.0.x86.exe&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-08-09T16%3A42%3A44Z&ske=2026-08-09T17%3A42%3A59Z&sks=b&skv=2018-11-09&sig=BRWG%2F5Qtoy7gM6h7fieuusZLVTX%2FodhD6mtDSoL5%2Fc8%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc4NjI5NjkyNSwibmJmIjoxNzg2Mjk1MTI1LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.pnapfBwYtmM4FlAZQiNys76zbyj6xNOSZPkU9JHwPVM&response-content-disposition=attachment%3B%20filename%3DQuera.Music.Setup.1.22.0.x86.exe&response-content-type=application%2Foctet-stream" target="_blank" class="download-option">
+                <div>
+                    <strong style="display: block; font-size: 18px; margin-bottom: 6px;">32-bit Build</strong>
+                    <span style="color: var(--text-muted); font-size: 14px;">82.4 MB • Low end old Systems compatible</span>
+                </div>
+                <img src="43.png" alt="32-bit build logo" class="download-logo">
             </a>
 
             <div style="margin-top: 24px; padding: 16px; border-radius: 12px; background: rgba(0, 210, 255, 0.1); border: 1px solid rgba(0, 210, 255, 0.2); color: #9fe9ff; font-size: 14px; display: flex; gap: 12px; align-items: flex-start;">
