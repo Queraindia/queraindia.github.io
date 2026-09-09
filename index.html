@@ -1,32 +1,33 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quera Music</title>
+    <title>Quera Music | The Audiophile Experience</title>
     
     <link rel="icon" type="image/x-icon" href="Queralogo.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* =========================================
+           CORE VARIABLES & THEME
+           ========================================= */
         :root {
-            /* Apple/Google inspired premium dark theme */
-            --bg: #000000;
-            --surface: #0a0a0c;
-            --surface-hover: #121217;
-            --border: rgba(255, 255, 255, 0.06);
-            --border-hover: rgba(255, 255, 255, 0.15);
+            --bg-base: #030305;
+            --surface-1: rgba(18, 18, 24, 0.6);
+            --surface-2: rgba(26, 26, 36, 0.8);
             
             --accent-cyan: #00d2ff;
-            --accent-purple: #9b72cb;
-            --accent-blue: #4285F4;
+            --accent-purple: #8e2de2;
+            --accent-pink: #ff0055;
             
-            --text: #f5f5f7;
-            --text-muted: #86868b;
+            --text-main: #ffffff;
+            --text-muted: #9ca3af;
+            --border-light: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.25);
             
             --radius-sm: 12px;
             --radius-md: 20px;
@@ -37,500 +38,443 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text);
+            background-color: var(--bg-base);
+            color: var(--text-main);
             overflow-x: hidden;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* --- PREMIUM BACKGROUNDS --- */
-        .bg-gradient {
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-base); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
+
+        /* =========================================
+           FULL ANIMATIONS (KEYFRAMES)
+           ========================================= */
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(50px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 15px rgba(0, 210, 255, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(142, 45, 226, 0.5); }
+            100% { box-shadow: 0 0 15px rgba(0, 210, 255, 0.2); }
+        }
+
+        /* Dynamic Animated Background */
+        .animated-bg {
             position: fixed;
-            top: -20%; left: -10%;
-            width: 120%; height: 120%;
-            background: 
-                radial-gradient(circle at 50% 0%, rgba(66, 133, 244, 0.12) 0%, transparent 40%),
-                radial-gradient(circle at 80% 80%, rgba(155, 114, 203, 0.08) 0%, transparent 40%);
-            filter: blur(100px);
-            z-index: -1;
-            pointer-events: none;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(-45deg, #030305, #0d0d14, #12081f, #02111a);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+            z-index: -2;
         }
 
-        /* --- APPLE-STYLE ANIMATIONS --- */
-        .animate-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: opacity, transform;
-        }
-        
-        .animate-up.in-view {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* FIX: Special animation class just for centered absolute/fixed elements like navbar */
-        .animate-up-center {
-            opacity: 0;
-            transform: translate(-50%, 40px);
-            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: opacity, transform;
-        }
-
-        .animate-up-center.in-view {
-            opacity: 1;
-            transform: translate(-50%, 0); /* Perfectly locks it to the center */
-        }
-
-        /* Staggered delays for opening load */
-        .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.3s; }
-        .delay-4 { transition-delay: 0.4s; }
-
-        /* --- GLASSMORPHISM NAVBAR --- */
-        nav {
+        /* =========================================
+           HEADER & NAVIGATION (BULLETPROOF LAYOUT)
+           ========================================= */
+        .header-wrapper {
             position: fixed;
-            top: 20px;
-            left: 50%;
-            /* Transform is handled by .animate-up-center class */
-            width: 92%;
-            max-width: 1180px;
-            padding: 10px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(10, 10, 12, 0.6);
-            backdrop-filter: blur(24px) saturate(180%);
-            -webkit-backdrop-filter: blur(24px) saturate(180%);
-            border: 1px solid var(--border);
-            border-radius: 9999px;
+            top: 20px; left: 0; width: 100%;
+            display: flex; justify-content: center;
             z-index: 1000;
+            animation: slideDown 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .logo-group {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 700;
-            font-size: 18px;
-            letter-spacing: -0.5px;
-        }
-
-        /* Logo resizing for 256x256 original size */
-        .logo-group img.icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            object-fit: contain; /* Keeps logo proportions perfect without cropping */
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-        }
-
-        .nav-links a.link-item {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a.link-item:hover { color: var(--text); }
-
-        .btn-nav {
-            background: var(--text);
-            color: var(--bg) !important;
-            padding: 10px 24px;
-            border-radius: 9999px;
-            font-size: 15px;
-            font-weight: 600 !important;
-            transition: transform 0.3s ease, background 0.3s;
-            text-decoration: none;
-        }
-
-        .btn-nav:hover {
-            transform: scale(1.03);
-            background: #e5e5ea;
-        }
-
-        /* --- PERFECT MS STORE BADGE --- */
-        .ms-badge-link {
-            display: inline-flex;
-            border-radius: 9px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: #000;
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .ms-badge-link:hover {
-            transform: scale(1.02) translateY(-2px);
-            box-shadow: 0 12px 30px rgba(0, 164, 239, 0.2);
-            border-color: rgba(255, 255, 255, 0.25);
-        }
-
-        .ms-badge-img {
-            display: block;
-            height: 56px;
-            width: auto;
-            object-fit: cover;
-            margin: -1px; 
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            padding: 180px 5% 80px;
-            max-width: 1180px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: clamp(42px, 6vw, 72px);
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -0.04em;
-            margin-bottom: 24px;
-            max-width: 900px;
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #fff 20%, var(--accent-cyan) 70%, var(--accent-purple) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: var(--text-muted);
-            max-width: 650px;
-            line-height: 1.6;
-            margin-bottom: 40px;
-        }
-
-        /* --- GOOGLE-STYLE VIDEO CARD --- */
-        .video-container {
-            width: 100%;
-            max-width: 1000px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 10px;
-            position: relative;
-            cursor: pointer;
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.9);
-            transition: border-color 0.4s;
-            margin-top: 50px;
-        }
-
-        .video-container:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .video-container video {
-            width: 100%;
-            border-radius: calc(var(--radius-lg) - 8px);
-            display: block;
-            background: #000;
-        }
-
-        .sound-pill {
-            position: absolute;
-            bottom: 24px;
-            right: 24px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(12px);
-            padding: 10px 20px;
-            border-radius: 9999px;
-            font-size: 14px;
-            font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: opacity 0.3s;
-        }
-
-        /* --- SECTIONS --- */
-        .section-wrap {
-            max-width: 1180px;
-            margin: 0 auto;
-            padding: 80px 5%;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-header h2 {
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        /* --- ATMOSPHERE SHOWCASE --- */
-        .atmosphere-panel {
-            background: linear-gradient(145deg, var(--surface) 0%, rgba(15,15,15,1) 100%);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 50px;
-            display: grid;
-            grid-template-columns: 1.1fr 1fr;
-            gap: 48px;
-            align-items: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .atmosphere-panel:hover {
-            transform: scale(1.01);
-            border-color: rgba(155, 114, 203, 0.3);
-        }
-
-        .atmosphere-panel h2 {
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 16px;
-        }
-
-        .atmosphere-panel p {
-            color: var(--text-muted);
-            font-size: 17px;
-            line-height: 1.7;
-        }
-
-        .atmosphere-img-wrap {
-            background: #050505;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            padding: 10px;
-        }
-
-        .atmosphere-img-wrap img {
-            width: 100%;
-            border-radius: calc(var(--radius-md) - 6px);
-            display: block;
-        }
-
-        /* --- APPLE/GOOGLE BENTO GRID --- */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .bento-box {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            padding: 32px;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .bento-box:hover {
-            border-color: rgba(255,255,255,0.2);
-            background: rgba(255,255,255,0.03);
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .box-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
-            border: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-            color: var(--accent-cyan);
-            font-size: 20px;
-        }
-
-        .bento-box h3 {
-            font-size: 19px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .bento-box p {
-            font-size: 15.5px;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        /* --- GALLERY --- */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-        }
-
-        .gallery-grid img {
-            width: 100%;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border);
-            background: var(--surface);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        
-        .gallery-grid img:hover {
-            transform: scale(1.02);
-            border-color: var(--accent-purple);
-        }
-
-        .full-span { grid-column: 1 / -1; }
-
-        /* --- FOOTER --- */
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 60px 5% 40px;
-            text-align: center;
-            background: var(--surface);
-        }
-
-        /* --- MODAL --- */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2500;
-            opacity: 0;
-            visibility: hidden;
+        nav {
+            width: 95%; max-width: 1200px;
+            padding: 12px 24px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(18, 18, 24, 0.6);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-light);
+            border-radius: 100px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
             transition: all 0.3s ease;
         }
 
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
+        nav:hover { background: rgba(25, 25, 35, 0.8); border-color: rgba(255,255,255,0.15); }
+
+        .logo-group {
+            display: flex; align-items: center; gap: 12px;
+            text-decoration: none; color: var(--text-main);
+            font-weight: 800; font-size: 18px;
         }
 
-        .modal-card {
-            background: #0a0a0c;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: var(--radius-lg);
-            width: 90%;
-            max-width: 500px;
-            padding: 40px;
-            position: relative;
-            box-shadow: 0 40px 100px rgba(0,0,0,1);
-            transform: scale(0.9) translateY(20px);
+        .logo-group img.icon {
+            width: 32px; height: 32px; border-radius: 8px;
+            object-fit: contain; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .logo-group:hover img.icon { transform: rotate(10deg) scale(1.1); }
+
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+
+        .nav-links a.link-item {
+            color: var(--text-muted); text-decoration: none;
+            font-size: 15px; font-weight: 600; position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a.link-item::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0%; height: 2px; background: var(--accent-cyan);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a.link-item:hover { color: var(--text-main); }
+        .nav-links a.link-item:hover::after { width: 100%; }
+
+        .btn-premium {
+            background: linear-gradient(135deg, #fff, #e0e0e0);
+            color: #000 !important;
+            padding: 10px 26px; border-radius: 100px;
+            font-size: 15px; font-weight: 800 !important;
+            text-decoration: none;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
+        }
+        .btn-premium:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        /* =========================================
+           HERO SECTION
+           ========================================= */
+        .hero {
+            padding: 200px 5% 100px;
+            max-width: 1200px; margin: 0 auto;
+            display: flex; flex-direction: column;
+            align-items: center; text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(46px, 7.5vw, 84px);
+            font-weight: 800; line-height: 1.05;
+            letter-spacing: -0.04em; margin-bottom: 24px;
+            max-width: 950px;
+            opacity: 0; animation: slideUpFade 1s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #fff 10%, var(--accent-cyan) 60%, var(--accent-purple) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 21px; color: var(--text-muted);
+            max-width: 750px; line-height: 1.6; margin-bottom: 44px;
+            opacity: 0; animation: slideUpFade 1s 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hero-actions {
+            opacity: 0; animation: slideUpFade 1s 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .ms-badge-link {
+            display: inline-flex; border-radius: 12px; overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.15); background: #000;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
-        .modal-overlay.active .modal-card {
-            transform: scale(1) translateY(0);
+        .ms-badge-link:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 164, 239, 0.3);
+            border-color: rgba(0, 164, 239, 0.5);
         }
+        .ms-badge-img { display: block; height: 64px; width: auto; object-fit: cover; }
+
+        .video-container {
+            width: 100%; max-width: 1050px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg); padding: 14px;
+            position: relative; cursor: pointer; margin-top: 70px;
+            opacity: 0; animation: slideUpFade 1.2s 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-style: preserve-3d;
+        }
+        .video-container:hover {
+            transform: translateY(-8px) perspective(1000px) rotateX(2deg);
+            border-color: rgba(0, 210, 255, 0.4);
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,1), 0 0 50px rgba(0, 210, 255, 0.15);
+        }
+
+        .video-container video {
+            width: 100%; border-radius: calc(var(--radius-lg) - 10px); display: block; background: #000;
+        }
+
+        .sound-pill {
+            position: absolute; bottom: 30px; right: 30px;
+            background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px);
+            padding: 12px 24px; border-radius: 100px;
+            font-size: 15px; font-weight: 700;
+            border: 1px solid rgba(255,255,255,0.2);
+            display: flex; align-items: center; gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        /* =========================================
+           SCROLL REVEAL ANIMATIONS (For JS)
+           ========================================= */
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-element.is-visible {
+            opacity: 1; transform: translateY(0);
+        }
+
+        /* =========================================
+           SECTION LAYOUTS
+           ========================================= */
+        .section-wrap { max-width: 1200px; margin: 0 auto; padding: 100px 5%; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 42px; font-weight: 800; letter-spacing: -0.02em; }
+
+        /* =========================================
+           ATMOSPHERE SHOWCASE
+           ========================================= */
+        .atmosphere-panel {
+            background: linear-gradient(145deg, var(--surface-1) 0%, rgba(5,5,8,1) 100%);
+            border: 1px solid var(--border-light); border-radius: var(--radius-lg);
+            padding: 60px; display: grid; grid-template-columns: 1.1fr 1fr;
+            gap: 60px; align-items: center;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative; overflow: hidden;
+        }
+        
+        .atmosphere-panel::before {
+            content: ''; position: absolute; top: -50%; right: -20%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(142, 45, 226, 0.15) 0%, transparent 60%);
+            border-radius: 50%; pointer-events: none;
+        }
+
+        .atmosphere-panel:hover {
+            transform: scale(1.02); border-color: rgba(142, 45, 226, 0.4);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+        }
+
+        .atmosphere-panel h2 { font-size: 38px; font-weight: 800; margin-bottom: 16px; }
+        .atmosphere-panel p { color: var(--text-muted); font-size: 18px; line-height: 1.8; }
+
+        .atmosphere-img-wrap {
+            background: rgba(0,0,0,0.4); border: 1px solid var(--border-light);
+            border-radius: var(--radius-md); padding: 12px;
+            transform: perspective(1000px) rotateY(-5deg); transition: transform 0.5s;
+        }
+        .atmosphere-panel:hover .atmosphere-img-wrap { transform: perspective(1000px) rotateY(0deg); }
+        .atmosphere-img-wrap img { width: 100%; border-radius: calc(var(--radius-md) - 8px); display: block; }
+
+        /* =========================================
+           FEATURES BENTO GRID
+           ========================================= */
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+
+        .bento-box {
+            background: var(--surface-1); backdrop-filter: blur(10px);
+            border: 1px solid var(--border-light); border-radius: var(--radius-md);
+            padding: 40px 32px; position: relative; z-index: 1; overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        /* Animated Hover Overlay */
+        .bento-box::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(0,210,255,0.05), transparent);
+            transform: translateX(-100%); transition: transform 0.6s; z-index: -1;
+        }
+
+        .bento-box:hover {
+            transform: translateY(-8px); border-color: rgba(255,255,255,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        .bento-box:hover::after { transform: translateX(100%); }
+
+        .box-icon {
+            width: 58px; height: 58px; border-radius: 16px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255,255,255,0.15);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 28px; color: var(--accent-cyan); font-size: 24px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .bento-box:nth-child(even) .box-icon { color: var(--accent-pink); animation-delay: -3s; }
+        .bento-box h3 { font-size: 22px; font-weight: 800; margin-bottom: 12px; }
+        .bento-box p { font-size: 16px; color: var(--text-muted); line-height: 1.7; }
+
+        /* =========================================
+           GALLERY SECTION
+           ========================================= */
+        .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+        
+        .gallery-item {
+            border-radius: var(--radius-md); border: 1px solid var(--border-light);
+            overflow: hidden; background: var(--surface-1); position: relative;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .gallery-item:hover {
+            border-color: var(--accent-cyan); transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+
+        .gallery-item img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s;
+            filter: grayscale(15%) brightness(0.9);
+        }
+        .gallery-item:hover img { transform: scale(1.06); filter: grayscale(0%) brightness(1.1); }
+        .full-span { grid-column: 1 / -1; }
+
+        /* =========================================
+           FOOTER & SUPPORT AUTOMATION
+           ========================================= */
+        footer {
+            border-top: 1px solid var(--border-light); padding: 100px 5% 60px;
+            text-align: center; background: linear-gradient(180deg, transparent, #000);
+        }
+        
+        .footer-badge {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 12px 24px; background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 100px;
+            font-size: 14px; font-weight: 700; margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        .footer-badge:hover { background: rgba(255,255,255,0.08); transform: translateY(-3px); }
+
+        .footer-links { display: flex; justify-content: center; gap: 30px; margin: 30px 0; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--accent-cyan); }
+
+        .support-fab {
+            position: fixed; bottom: 35px; right: 35px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            color: #fff; width: 65px; height: 65px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 26px; z-index: 2000; text-decoration: none;
+            animation: pulseGlow 3s infinite;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .support-fab:hover { transform: scale(1.15) translateY(-5px); }
+
+        /* =========================================
+           DOWNLOAD MODAL
+           ========================================= */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 3000; opacity: 0; visibility: hidden; transition: all 0.4s ease;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+
+        .modal-card {
+            background: var(--surface-1); border: 1px solid rgba(255,255,255,0.15);
+            border-radius: var(--radius-lg); width: 90%; max-width: 520px; padding: 45px;
+            position: relative; box-shadow: 0 40px 80px rgba(0,0,0,1);
+            transform: scale(0.9) translateY(30px); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal-overlay.active .modal-card { transform: scale(1) translateY(0); }
 
         .modal-close {
-            position: absolute;
-            top: 24px;
-            right: 24px;
-            background: rgba(255,255,255,0.05);
-            width: 32px; height: 32px;
-            border-radius: 50%;
-            border: none;
-            color: var(--text-muted);
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: 0.2s;
+            position: absolute; top: 20px; right: 20px;
+            background: rgba(255,255,255,0.05); width: 40px; height: 40px; border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); font-size: 18px;
+            display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s;
         }
-
-        .modal-close:hover { background: rgba(255,255,255,0.1); color: var(--text); }
+        .modal-close:hover { background: var(--text-main); color: #000; transform: rotate(90deg); }
 
         .download-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 18px 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            text-decoration: none;
-            color: var(--text);
-            margin-bottom: 12px;
-            transition: all 0.2s;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 20px 24px; background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-sm);
+            text-decoration: none; color: var(--text-main); margin-bottom: 14px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
         .download-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
+            background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.3);
+            transform: translateX(8px);
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 840px) {
-            .atmosphere-panel { grid-template-columns: 1fr; padding: 32px; }
+        /* =========================================
+           RESPONSIVE DESIGN
+           ========================================= */
+        @media (max-width: 960px) {
+            .atmosphere-panel { grid-template-columns: 1fr; text-align: center; padding: 40px; }
             .bento-grid { grid-template-columns: 1fr 1fr; }
+            .hero h1 { font-size: 54px; }
         }
-
-        @media (max-width: 560px) {
-            .bento-grid { grid-template-columns: 1fr; }
-            .gallery-grid { grid-template-columns: 1fr; }
+        @media (max-width: 768px) {
             .nav-links .link-item { display: none; }
-            .hero h1 { font-size: 38px; }
+            nav { padding: 12px 20px; }
+        }
+        @media (max-width: 600px) {
+            .bento-grid, .gallery-grid { grid-template-columns: 1fr; }
+            .hero { padding-top: 150px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-gradient"></div>
+    <!-- Animated Background Mesh -->
+    <div class="animated-bg"></div>
 
-    <!-- NAVBAR with On-Load Animation FIX -->
-    <nav class="animate-up-center delay-1">
-        <a href="#" class="logo-group">
-            <!-- Used Queralogo.ico -->
-            <img src="Queralogo.ico" alt="Queramusic Logo" class="icon" 
-                 onerror="this.outerHTML='<div style=\'width:32px; height:32px; border-radius:8px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center;\'><i class=\'fa-solid fa-compact-disc\' style=\'color: var(--accent-cyan); font-size: 18px;\'></i></div>'">
-            <span>Queramusic.in</span>
-        </a>
-        <div class="nav-links">
-            <a href="#atmosphere" class="link-item">Atmosphere™</a>
-            <a href="#features" class="link-item">Features</a>
-            <a href="#gallery" class="link-item">Gallery</a>
-            <a href="#" class="btn-nav" onclick="openModal(event)">Download</a>
-        </div>
-    </nav>
+    <!-- Wrapped Nav for Bulletproof Centering -->
+    <div class="header-wrapper">
+        <nav>
+            <a href="#" class="logo-group">
+                <img src="Queralogo.ico" alt="Queramusic Logo" class="icon" onerror="this.style.display='none'">
+                <span>Queramusic.in</span>
+            </a>
+            <div class="nav-links">
+                <a href="#atmosphere" class="link-item">Atmosphere</a>
+                <a href="#features" class="link-item">Features</a>
+                <a href="#gallery" class="link-item">Gallery</a>
+                <a href="#" class="btn-premium" onclick="openModal(event)">Download</a>
+            </div>
+        </nav>
+    </div>
 
-    <!-- HERO SECTION -->
+    <!-- Hero Section -->
     <section class="hero">
-        <h1 class="animate-up delay-2">Pure sound playback.<br><span class="gradient-text">Engineered for audiophiles.</span></h1>
-        <p class="animate-up delay-3">Queramusic is a fast, zero-telemetry offline music player with studio-grade DSP, bit-perfect processing, and immersive 3D sound rendering.</p>
+        <h1>Pure sound playback.<br><span class="gradient-text">Engineered for perfection.</span></h1>
+        <p>Queramusic is a fast, zero-telemetry offline music player with studio-grade DSP, bit-perfect processing, and immersive 3D sound rendering built from the ground up.</p>
         
-        <div class="animate-up delay-3" style="margin-bottom: 20px;">
+        <div class="hero-actions">
             <a href="https://get.microsoft.com/installer/download/9mv19rj2l1hk?referrer=appbadge" target="_self" class="ms-badge-link">
-                <img src="https://get.microsoft.com/images/en-us%20dark.svg" width="200" class="ms-badge-img">
+                <img src="https://get.microsoft.com/images/en-us%20dark.svg" alt="Get it from Microsoft" class="ms-badge-img">
             </a>
         </div>
 
-        <div class="video-container animate-up delay-4" id="videoWrapper">
+        <div class="video-container" id="videoWrapper">
             <video id="promoVideo" src="Videoweb.mp4" autoplay loop muted playsinline></video>
             <div class="sound-pill" id="soundIndicator">
                 <i class="fa-solid fa-volume-xmark"></i> Sound muted
@@ -538,171 +482,193 @@
         </div>
     </section>
 
-    <!-- QUERA ATMOSPHERE -->
+    <!-- Atmosphere Section -->
     <section class="section-wrap" id="atmosphere">
-        <div class="atmosphere-panel scroll-reveal">
+        <div class="atmosphere-panel reveal-element">
             <div>
-                <div style="color: var(--accent-purple); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Spatial Engine</div>
+                <div style="color: var(--accent-purple); font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px;">Spatial Engine</div>
                 <h2>Queramusic Atmosphere™</h2>
-                <p>Proprietary immersive audio algorithm designed to widen soundstages on local files. Converts flat stereo output into realistic, spacious studio acoustics without distortion or latency.</p>
+                <p>Our proprietary immersive audio algorithm is designed to widen soundstages on local files. It converts flat stereo output into realistic, spacious studio acoustics without distortion, phase cancellation, or latency. Hear your music exactly as the producer intended.</p>
             </div>
             <div class="atmosphere-img-wrap">
-                <img src="image_03ad98.jpg" alt="Atmosphere View">
+                <img src="image_03ad98.jpg" alt="Atmosphere View" onerror="this.style.opacity='0'">
             </div>
         </div>
     </section>
 
-    <!-- 6 FEATURES BENTO GRID -->
+    <!-- Features Bento Grid -->
     <section class="section-wrap" id="features">
-        <div class="section-header scroll-reveal">
-            <h2>Built from the ground up</h2>
+        <div class="section-header reveal-element">
+            <h2>Uncompromising Architecture</h2>
         </div>
         <div class="bento-grid">
-            <div class="bento-box scroll-reveal">
+            <div class="bento-box reveal-element">
                 <div class="box-icon"><i class="fa-solid fa-wave-square"></i></div>
                 <h3>Hi-Res Engine</h3>
-                <p>Bit-perfect raw rendering designed specifically for lossless audio playback.</p>
+                <p>Bit-perfect raw rendering designed specifically for FLAC, ALAC, and high-fidelity lossless audio playback without resampling.</p>
             </div>
-            <div class="bento-box scroll-reveal" style="transition-delay: 0.1s;">
+            <div class="bento-box reveal-element" style="transition-delay: 0.1s;">
                 <div class="box-icon"><i class="fa-solid fa-sliders"></i></div>
                 <h3>10-Band EQ</h3>
-                <p>Detailed curve manipulation across frequencies with customizable presets.</p>
+                <p>Detailed curve manipulation across frequencies with customizable presets tailored for specific headphone models.</p>
             </div>
-            <div class="bento-box scroll-reveal" style="transition-delay: 0.2s;">
+            <div class="bento-box reveal-element" style="transition-delay: 0.2s;">
                 <div class="box-icon"><i class="fa-solid fa-microphone-lines"></i></div>
                 <h3>Studio DSP</h3>
-                <p>Equipped with Direct Monitoring, punchy sub-bass, and vocal enhancement.</p>
+                <p>Equipped with Direct Monitoring, phase correction, punchy sub-bass generation, and intelligent vocal enhancement.</p>
             </div>
-            <div class="bento-box scroll-reveal">
+            <div class="bento-box reveal-element">
                 <div class="box-icon"><i class="fa-solid fa-shield-halved"></i></div>
                 <h3>Private & Offline</h3>
-                <p>Zero tracking, no analytical payloads, and complete local directory scan.</p>
+                <p>Zero tracking, no analytical payloads, no telemetry, and a complete local directory scan for absolute privacy.</p>
             </div>
-            <div class="bento-box scroll-reveal" style="transition-delay: 0.1s;">
-                <div class="box-icon"><i class="fa-solid fa-bolt"></i></div>
-                <h3>Lightweight</h3>
-                <p>Optimized C++ core to preserve minimal memory and ultra-low CPU cycles.</p>
+            <div class="bento-box reveal-element" style="transition-delay: 0.1s;">
+                <div class="box-icon"><i class="fa-solid fa-microchip"></i></div>
+                <h3>Lightweight Core</h3>
+                <p>Optimized C++ architecture preserves minimal memory footprint and ultra-low CPU cycles, perfect for background listening.</p>
             </div>
-            <div class="bento-box scroll-reveal" style="transition-delay: 0.2s;">
+            <div class="bento-box reveal-element" style="transition-delay: 0.2s;">
                 <div class="box-icon"><i class="fa-solid fa-headphones-simple"></i></div>
                 <h3>Spatial Acoustics</h3>
-                <p>Adaptive 3D sound placement providing unmatched surround immersion.</p>
+                <p>Adaptive 3D sound placement providing unmatched surround immersion for standard stereo headphones.</p>
             </div>
         </div>
     </section>
 
-    <!-- GALLERY -->
+    <!-- Gallery Grid -->
     <section class="section-wrap" id="gallery">
-        <div class="section-header scroll-reveal">
+        <div class="section-header reveal-element">
             <h2>Designed with precision</h2>
         </div>
         <div class="gallery-grid">
-            <img src="1.png" alt="Promo View" class="full-span scroll-reveal">
-            <img src="2.png" alt="Interface 1" class="scroll-reveal">
-            <img src="4.png" alt="Interface 2" class="scroll-reveal" style="transition-delay: 0.1s;">
-            <img src="3.png" alt="Interface 3" class="full-span scroll-reveal">
+            <div class="gallery-item full-span reveal-element">
+                <img src="1.png" alt="Promo View" onerror="this.style.background='#111'">
+            </div>
+            <div class="gallery-item reveal-element">
+                <img src="2.png" alt="Interface 1" onerror="this.style.background='#111'">
+            </div>
+            <div class="gallery-item reveal-element" style="transition-delay: 0.1s;">
+                <img src="4.png" alt="Interface 2" onerror="this.style.background='#111'">
+            </div>
+            <div class="gallery-item full-span reveal-element">
+                <img src="3.png" alt="Interface 3" onerror="this.style.background='#111'">
+            </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- Animated Support Fab -->
+    <a href="mailto:quera.indiamusic@gmail.com?subject=Quera%20Music%20Premium%20Support&body=Hi%20Quera%20Support%20Team,%0A%0AHow%20can%20we%20help%20you%20today?%0A" class="support-fab" title="Contact Support">
+        <i class="fa-solid fa-headset"></i>
+    </a>
+
+    <!-- Footer -->
     <footer>
-        <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 9999px; font-size: 14px; margin-bottom: 20px;">
-            <i class="fa-solid fa-heart" style="color: #ef4444;"></i> Made in India • Made for You
+        <div class="footer-badge">
+            <i class="fa-solid fa-heart" style="color: var(--accent-pink);"></i> Engineered in India • Designed for Audiophiles
         </div>
-        <p style="font-size: 15px; color: var(--text-muted);">Developed by <strong style="color: #fff;">Samarth Dwivedi</strong> & <strong style="color: #fff;">Quera INDIA LTD</strong></p>
-        <p style="font-size: 13px; margin-top: 8px; color: #555;">&copy; 2026 Queramusic.in. All rights reserved.</p>
+        
+        <div class="footer-links">
+            <a href="https://queramusic.in/pvptp.html">Privacy Policy</a>
+            <a href="mailto:quera.indiamusic@gmail.com">Support</a>
+            <a href="#features">Features</a>
+        </div>
+
+        <p style="font-size: 16px; color: var(--text-muted); font-weight: 500;">Developed by <strong style="color: #fff;">Samarth Dwivedi</strong> & <strong style="color: #fff;">Quera INDIA LTD</strong></p>
+        <p style="font-size: 14px; margin-top: 14px; color: #555;">&copy; 2026 Queramusic.in. All rights reserved.</p>
     </footer>
 
-    <!-- MODAL -->
+    <!-- Download Modal -->
     <div class="modal-overlay" id="downloadModal">
         <div class="modal-card">
             <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
-            <h3 style="font-size: 24px; font-weight: 800; margin-bottom: 6px; text-align: center;">Download Queramusic</h3>
-            <p style="font-size: 15px; color: var(--text-muted); margin-bottom: 32px; text-align: center;">Choose your installation source for Windows.</p>
+            <h3 style="font-size: 30px; font-weight: 800; margin-bottom: 10px; text-align: center; color: #fff;">Download</h3>
+            <p style="font-size: 16px; color: var(--text-muted); margin-bottom: 36px; text-align: center;">Select your preferred installation method.</p>
 
-            <div style="display: flex; justify-content: center; margin-bottom: 24px;">
-                <a href="https://get.microsoft.com/installer/download/9mv19rj2l1hk?referrer=appbadge" target="_self" class="ms-badge-link" style="height: 60px; border-radius: 10px;">
-                    <img src="https://get.microsoft.com/images/en-us%20dark.svg" width="200" class="ms-badge-img" style="height: 60px; width: auto;">
+            <div style="display: flex; justify-content: center; margin-bottom: 28px;">
+                <a href="https://get.microsoft.com/installer/download/9mv19rj2l1hk?referrer=appbadge" target="_self" class="ms-badge-link" style="border-radius: 14px;">
+                    <img src="https://get.microsoft.com/images/en-us%20dark.svg" width="220" class="ms-badge-img">
                 </a>
             </div>
 
             <a href="https://apps.microsoft.com/detail/9MV19RJ2L1HK" target="_blank" class="download-item">
                 <div>
-                    <strong style="display: block; font-size: 16px; margin-bottom: 4px;">Microsoft Web Store</strong>
-                    <span style="font-size: 13px; color: var(--text-muted);">Open store listing in browser</span>
+                    <strong style="display: block; font-size: 17px; margin-bottom: 4px;">Microsoft Web Store</strong>
+                    <span style="font-size: 14px; color: var(--text-muted);">View full store listing</span>
                 </div>
-                <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--text-muted); font-size: 16px;"></i>
+                <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--accent-cyan); font-size: 18px;"></i>
             </a>
 
             <a href="https://drive.google.com/file/d/1SFjnhwnB_4M61hb2ir68RnPM3guuh0w3/view?usp=drive_link" target="_blank" class="download-item">
                 <div>
-                    <strong style="display: block; font-size: 16px; margin-bottom: 4px;">64-bit Direct Installer</strong>
-                    <span style="font-size: 13px; color: var(--text-muted);">97.8 MB • Standalone build</span>
+                    <strong style="display: block; font-size: 17px; margin-bottom: 4px;">64-bit Direct Installer</strong>
+                    <span style="font-size: 14px; color: var(--text-muted);">97.8 MB • Standalone .exe</span>
                 </div>
-                <i class="fa-solid fa-download" style="color: var(--text-muted); font-size: 16px;"></i>
+                <i class="fa-solid fa-download" style="color: var(--accent-cyan); font-size: 18px;"></i>
             </a>
 
             <a href="https://drive.google.com/file/d/1ui2XHSkUQbMi9Jg6CEvHK8SnbWLQjsAe/view?usp=drive_link" target="_blank" class="download-item">
                 <div>
-                    <strong style="display: block; font-size: 16px; margin-bottom: 4px;">32-bit Legacy Build</strong>
-                    <span style="font-size: 13px; color: var(--text-muted);">82.4 MB • Older system compatible</span>
+                    <strong style="display: block; font-size: 17px; margin-bottom: 4px;">32-bit Legacy Build</strong>
+                    <span style="font-size: 14px; color: var(--text-muted);">82.4 MB • For older hardware</span>
                 </div>
-                <i class="fa-solid fa-download" style="color: var(--text-muted); font-size: 16px;"></i>
+                <i class="fa-solid fa-download" style="color: var(--accent-cyan); font-size: 18px;"></i>
             </a>
         </div>
     </div>
 
-    <!-- SCRIPTS for Animations & Interactive Video -->
+    <!-- Animation & Interactive Scripts -->
     <script>
-        // 1. Initial Load Animation Trigger
+        // Smooth Intersection Observer for Scroll Reveals
         document.addEventListener("DOMContentLoaded", () => {
-            const loadElements = document.querySelectorAll('.animate-up, .animate-up-center');
-            loadElements.forEach(el => el.classList.add('in-view'));
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal-element').forEach(el => observer.observe(el));
         });
 
-        // 2. Scroll Reveal Observer (Apple style fade up on scroll)
-        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.scroll-reveal').forEach(section => {
-            section.classList.add('animate-up');
-            observer.observe(section);
-        });
-
-        // 3. Video Sound Toggle
+        // Interactive Video Sound Toggle
         const videoWrapper = document.getElementById('videoWrapper');
         const video = document.getElementById('promoVideo');
         const indicator = document.getElementById('soundIndicator');
 
-        videoWrapper.addEventListener('click', () => {
-            if (video.muted) {
-                video.muted = false;
-                indicator.innerHTML = '<i class="fa-solid fa-volume-high"></i> Audio Active';
-                indicator.style.color = '#fff';
-                indicator.style.background = 'rgba(0, 210, 255, 0.2)';
-                indicator.style.borderColor = 'var(--accent-cyan)';
-                setTimeout(() => indicator.style.opacity = '0', 2000);
-            } else {
-                video.muted = true;
-                indicator.style.opacity = '1';
-                indicator.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> Sound muted';
-                indicator.style.background = 'rgba(0, 0, 0, 0.6)';
-                indicator.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-            }
-        });
+        if(videoWrapper && video && indicator) {
+            videoWrapper.addEventListener('click', () => {
+                if (video.muted) {
+                    video.muted = false;
+                    indicator.innerHTML = '<i class="fa-solid fa-volume-high"></i> Audio Active';
+                    indicator.style.color = '#fff';
+                    indicator.style.background = 'rgba(0, 210, 255, 0.25)';
+                    indicator.style.borderColor = 'var(--accent-cyan)';
+                    setTimeout(() => indicator.style.opacity = '0', 2500);
+                } else {
+                    video.muted = true;
+                    indicator.style.opacity = '1';
+                    indicator.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> Sound muted';
+                    indicator.style.background = 'rgba(0, 0, 0, 0.7)';
+                    indicator.style.borderColor = 'rgba(255,255,255,0.2)';
+                }
+            });
+        }
 
-        // 4. Modal Logic
+        // Modal Logic
         const modal = document.getElementById('downloadModal');
         function openModal(e) { e.preventDefault(); modal.classList.add('active'); }
         function closeModal() { modal.classList.remove('active'); }
-        modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+        if(modal) {
+            modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+        }
     </script>
 </body>
 </html>
