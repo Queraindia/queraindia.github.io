@@ -1,674 +1,1943 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quera Music | The Audiophile Experience</title>
-    
-    <link rel="icon" type="image/x-icon" href="Queralogo.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        /* =========================================
-           CORE VARIABLES & THEME
-           ========================================= */
-        :root {
-            --bg-base: #030305;
-            --surface-1: rgba(18, 18, 24, 0.6);
-            --surface-2: rgba(26, 26, 36, 0.8);
-            
-            --accent-cyan: #00d2ff;
-            --accent-purple: #8e2de2;
-            --accent-pink: #ff0055;
-            
-            --text-main: #ffffff;
-            --text-muted: #9ca3af;
-            --border-light: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(255, 255, 255, 0.25);
-            
-            --radius-sm: 12px;
-            --radius-md: 20px;
-            --radius-lg: 32px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
+<!-- ============================================================
+     PRIMARY META
+     ============================================================ -->
+<title>Queramusic — Bit-Perfect Offline Music Player for Windows</title>
+<meta name="description" content="Queramusic is a fast, zero-telemetry offline music player for Windows with a bit-perfect hi-res engine, 10-band EQ and immersive spatial audio. Free download.">
+<meta name="keywords" content="offline music player, hi-res audio, bit-perfect, FLAC player, Windows music player, equalizer, spatial audio">
+<meta name="author" content="Quera INDIA LTD">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#040407">
+<link rel="canonical" href="https://queramusic.in/">
 
-        body {
-            background-color: var(--bg-base);
-            color: var(--text-main);
-            overflow-x: hidden;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
+<!-- ============================================================
+     OPEN GRAPH / TWITTER
+     ============================================================ -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Queramusic">
+<meta property="og:title" content="Queramusic — Bit-Perfect Offline Music Player for Windows">
+<meta property="og:description" content="Studio-grade DSP, hi-res lossless playback and immersive spatial audio. Zero telemetry. Completely offline.">
+<meta property="og:url" content="https://queramusic.in/">
+<meta property="og:image" content="https://queramusic.in/1.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Queramusic — Bit-Perfect Offline Music Player">
+<meta name="twitter:description" content="Studio-grade DSP, hi-res lossless playback and immersive spatial audio. Zero telemetry.">
+<meta name="twitter:image" content="https://queramusic.in/1.png">
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: var(--bg-base); }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
+<!-- ============================================================
+     ICONS & FONTS
+     ============================================================ -->
+<link rel="icon" href="Queralogo.ico" sizes="any">
+<link rel="apple-touch-icon" href="Queralogo.ico">
 
-        /* =========================================
-           FULL ANIMATIONS (KEYFRAMES)
-           ========================================= */
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-            100% { transform: translateY(0px); }
-        }
+<!-- ============================================================
+     STRUCTURED DATA
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Queramusic",
+  "url": "https://queramusic.in/",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Windows 10, Windows 11",
+  "softwareVersion": "Latest",
+  "description": "A fast, zero-telemetry offline music player with a bit-perfect hi-res engine, 10-band EQ and immersive spatial audio.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+  "publisher": { "@type": "Organization", "name": "Quera INDIA LTD" },
+  "author": { "@type": "Person", "name": "Samarth Dwivedi" }
+}
+</script>
 
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+<style>
+/* ============================================================
+   1. DESIGN TOKENS
+   ============================================================ */
+:root{
+  /* Surfaces */
+  --bg:            #040407;
+  --surface-1:     rgba(255,255,255,.022);
+  --surface-2:     rgba(255,255,255,.045);
+  --surface-3:     rgba(255,255,255,.075);
 
-        @keyframes slideUpFade {
-            from { opacity: 0; transform: translateY(50px) scale(0.98); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
+  /* Text */
+  --text:          #f4f5f8;
+  --text-2:        #9aa1b1;
+  --text-3:        #666c7c;
 
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 15px rgba(0, 210, 255, 0.2); }
-            50% { box-shadow: 0 0 30px rgba(142, 45, 226, 0.5); }
-            100% { box-shadow: 0 0 15px rgba(0, 210, 255, 0.2); }
-        }
+  /* Lines */
+  --line:          rgba(255,255,255,.075);
+  --line-2:        rgba(255,255,255,.145);
 
-        /* Dynamic Animated Background */
-        .animated-bg {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(-45deg, #030305, #0d0d14, #12081f, #02111a);
-            background-size: 400% 400%;
-            animation: gradientFlow 15s ease infinite;
-            z-index: -2;
-        }
+  /* Accents */
+  --cyan:          #45d9ff;
+  --violet:        #8b5cf6;
+  --pink:          #ff2d6f;
 
-        /* =========================================
-           HEADER & NAVIGATION (BULLETPROOF LAYOUT)
-           ========================================= */
-        .header-wrapper {
-            position: fixed;
-            top: 20px; left: 0; width: 100%;
-            display: flex; justify-content: center;
-            z-index: 1000;
-            animation: slideDown 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+  /* Radii */
+  --r-xs: 10px;
+  --r-sm: 14px;
+  --r-md: 20px;
+  --r-lg: 28px;
+  --r-xl: 36px;
 
-        nav {
-            width: 95%; max-width: 1200px;
-            padding: 12px 24px;
-            display: flex; justify-content: space-between; align-items: center;
-            background: rgba(18, 18, 24, 0.6);
-            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--border-light);
-            border-radius: 100px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-            transition: all 0.3s ease;
-        }
+  /* Motion */
+  --ease: cubic-bezier(.16,1,.3,1);
 
-        nav:hover { background: rgba(25, 25, 35, 0.8); border-color: rgba(255,255,255,0.15); }
+  /* Layout */
+  --container: 1200px;
+  --gutter: clamp(20px, 5vw, 40px);
+  --section-y: clamp(76px, 9vw, 132px);
 
-        .logo-group {
-            display: flex; align-items: center; gap: 12px;
-            text-decoration: none; color: var(--text-main);
-            font-weight: 800; font-size: 18px;
-        }
+  /* Type scale */
+  --fs-h1: clamp(2.5rem, 6.4vw, 4.75rem);
+  --fs-h2: clamp(1.85rem, 3.4vw, 2.7rem);
+  --fs-h3: clamp(1.1rem, 1.6vw, 1.28rem);
+  --fs-lead: clamp(1rem, 1.35vw, 1.16rem);
+}
 
-        .logo-group img.icon {
-            width: 32px; height: 32px; border-radius: 8px;
-            object-fit: contain; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .logo-group:hover img.icon { transform: rotate(10deg) scale(1.1); }
+/* ============================================================
+   2. RESET & BASE
+   ============================================================ */
+*,*::before,*::after{ box-sizing:border-box; }
+*{ margin:0; }
 
-        .nav-links { display: flex; align-items: center; gap: 32px; }
+html{
+  -webkit-text-size-adjust:100%;
+  scroll-behavior:smooth;
+  scroll-padding-top:120px;
+}
 
-        .nav-links a.link-item {
-            color: var(--text-muted); text-decoration: none;
-            font-size: 15px; font-weight: 600; position: relative;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-links a.link-item::after {
-            content: ''; position: absolute; bottom: -4px; left: 0;
-            width: 0%; height: 2px; background: var(--accent-cyan);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a.link-item:hover { color: var(--text-main); }
-        .nav-links a.link-item:hover::after { width: 100%; }
+body{
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size:16px;
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
 
-        .btn-premium {
-            background: linear-gradient(135deg, #fff, #e0e0e0);
-            color: #000 !important;
-            padding: 10px 26px; border-radius: 100px;
-            font-size: 15px; font-weight: 800 !important;
-            text-decoration: none;
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
-        }
-        .btn-premium:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
-        }
+img, svg, video{ display:block; max-width:100%; }
+button, input, select, textarea{ font:inherit; color:inherit; }
+a{ color:inherit; }
+ul{ list-style:none; padding:0; }
 
-        /* =========================================
-           HERO SECTION
-           ========================================= */
-        .hero {
-            padding: 200px 5% 100px;
-            max-width: 1200px; margin: 0 auto;
-            display: flex; flex-direction: column;
-            align-items: center; text-align: center;
-        }
+::selection{ background:rgba(69,217,255,.28); color:#fff; }
 
-        .hero h1 {
-            font-size: clamp(46px, 7.5vw, 84px);
-            font-weight: 800; line-height: 1.05;
-            letter-spacing: -0.04em; margin-bottom: 24px;
-            max-width: 950px;
-            opacity: 0; animation: slideUpFade 1s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+/* Focus visibility — accessibility */
+:focus-visible{
+  outline:2px solid var(--cyan);
+  outline-offset:3px;
+  border-radius:6px;
+}
+:focus:not(:focus-visible){ outline:none; }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #fff 10%, var(--accent-cyan) 60%, var(--accent-purple) 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
+/* Scrollbar */
+::-webkit-scrollbar{ width:11px; height:11px; }
+::-webkit-scrollbar-track{ background:#07070c; }
+::-webkit-scrollbar-thumb{
+  background:#25262f;
+  border-radius:99px;
+  border:3px solid #07070c;
+}
+::-webkit-scrollbar-thumb:hover{ background:#3a3c48; }
 
-        .hero p {
-            font-size: 21px; color: var(--text-muted);
-            max-width: 750px; line-height: 1.6; margin-bottom: 44px;
-            opacity: 0; animation: slideUpFade 1s 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+/* Utilities */
+.container{
+  width:min(calc(100% - var(--gutter) * 2), var(--container));
+  margin-inline:auto;
+}
+.visually-hidden{
+  position:absolute!important;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  white-space:nowrap;
+  border:0;
+}
 
-        .hero-actions {
-            opacity: 0; animation: slideUpFade 1s 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+.skip-link{
+  position:fixed;
+  top:12px; left:50%;
+  transform:translate(-50%, -160%);
+  z-index:5000;
+  padding:12px 22px;
+  background:#fff;
+  color:#050508;
+  font-weight:700;
+  font-size:14px;
+  border-radius:99px;
+  text-decoration:none;
+  transition:transform .3s var(--ease);
+}
+.skip-link:focus{ transform:translate(-50%, 0); }
 
-        .ms-badge-link {
-            display: inline-flex; border-radius: 12px; overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.15); background: #000;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .ms-badge-link:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(0, 164, 239, 0.3);
-            border-color: rgba(0, 164, 239, 0.5);
-        }
-        .ms-badge-img { display: block; height: 64px; width: auto; object-fit: cover; }
+/* ============================================================
+   3. AMBIENT BACKGROUND
+   ============================================================ */
+.bg-layer{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:
+    radial-gradient(900px 620px at 12% -8%,  rgba(69,217,255,.10), transparent 62%),
+    radial-gradient(820px 600px at 88% 2%,   rgba(139,92,246,.13), transparent 62%),
+    radial-gradient(1100px 800px at 50% 112%,rgba(139,92,246,.07), transparent 65%),
+    var(--bg);
+}
+.bg-layer::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.021) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.021) 1px, transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(ellipse 85% 55% at 50% 0%, #000 15%, transparent 78%);
+          mask-image:radial-gradient(ellipse 85% 55% at 50% 0%, #000 15%, transparent 78%);
+}
 
-        .video-container {
-            width: 100%; max-width: 1050px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg); padding: 14px;
-            position: relative; cursor: pointer; margin-top: 70px;
-            opacity: 0; animation: slideUpFade 1.2s 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            transform-style: preserve-3d;
-        }
-        .video-container:hover {
-            transform: translateY(-8px) perspective(1000px) rotateX(2deg);
-            border-color: rgba(0, 210, 255, 0.4);
-            box-shadow: 0 40px 80px -20px rgba(0,0,0,1), 0 0 50px rgba(0, 210, 255, 0.15);
-        }
+/* ============================================================
+   4. BUTTONS
+   ============================================================ */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:14px 26px;
+  border:1px solid transparent;
+  border-radius:99px;
+  font-size:14.5px;
+  font-weight:700;
+  line-height:1;
+  letter-spacing:-.01em;
+  text-decoration:none;
+  white-space:nowrap;
+  cursor:pointer;
+  transition:
+    transform .35s var(--ease),
+    background-color .3s ease,
+    border-color .3s ease,
+    color .3s ease,
+    box-shadow .35s var(--ease);
+}
+.btn i{ font-size:.95em; }
 
-        .video-container video {
-            width: 100%; border-radius: calc(var(--radius-lg) - 10px); display: block; background: #000;
-        }
+.btn--primary{
+  background:#fff;
+  color:#07070c;
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset;
+}
+.btn--primary:hover{
+  background:#e8eaf0;
+  transform:translateY(-2px);
+  box-shadow:0 14px 34px -12px rgba(255,255,255,.3);
+}
 
-        .sound-pill {
-            position: absolute; bottom: 30px; right: 30px;
-            background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px);
-            padding: 12px 24px; border-radius: 100px;
-            font-size: 15px; font-weight: 700;
-            border: 1px solid rgba(255,255,255,0.2);
-            display: flex; align-items: center; gap: 8px;
-            transition: all 0.3s ease;
-        }
+.btn--ghost{
+  background:rgba(255,255,255,.035);
+  border-color:var(--line-2);
+  color:var(--text);
+  backdrop-filter:blur(8px);
+}
+.btn--ghost:hover{
+  background:rgba(255,255,255,.08);
+  border-color:rgba(255,255,255,.28);
+  transform:translateY(-2px);
+}
 
-        /* =========================================
-           SCROLL REVEAL ANIMATIONS (For JS)
-           ========================================= */
-        .reveal-element {
-            opacity: 0;
-            transform: translateY(60px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal-element.is-visible {
-            opacity: 1; transform: translateY(0);
-        }
+.btn--sm{ padding:11px 20px; font-size:13.5px; }
+.btn--block{ width:100%; }
 
-        /* =========================================
-           SECTION LAYOUTS
-           ========================================= */
-        .section-wrap { max-width: 1200px; margin: 0 auto; padding: 100px 5%; }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-header h2 { font-size: 42px; font-weight: 800; letter-spacing: -0.02em; }
+/* ============================================================
+   5. HEADER / NAVIGATION
+   ============================================================ */
+.site-header{
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:1000;
+  display:flex;
+  justify-content:center;
+  padding:18px var(--gutter) 0;
+  transition:padding .45s var(--ease);
+  animation:headerIn .9s var(--ease) both;
+}
+.site-header.is-scrolled{ padding-top:10px; }
 
-        /* =========================================
-           ATMOSPHERE SHOWCASE
-           ========================================= */
-        .atmosphere-panel {
-            background: linear-gradient(145deg, var(--surface-1) 0%, rgba(5,5,8,1) 100%);
-            border: 1px solid var(--border-light); border-radius: var(--radius-lg);
-            padding: 60px; display: grid; grid-template-columns: 1.1fr 1fr;
-            gap: 60px; align-items: center;
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative; overflow: hidden;
-        }
-        
-        .atmosphere-panel::before {
-            content: ''; position: absolute; top: -50%; right: -20%;
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(142, 45, 226, 0.15) 0%, transparent 60%);
-            border-radius: 50%; pointer-events: none;
-        }
+@keyframes headerIn{
+  from{ opacity:0; transform:translateY(-24px); }
+  to  { opacity:1; transform:translateY(0); }
+}
 
-        .atmosphere-panel:hover {
-            transform: scale(1.02); border-color: rgba(142, 45, 226, 0.4);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
-        }
+.nav{
+  width:100%;
+  max-width:var(--container);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  padding:10px 10px 10px 20px;
+  border:1px solid var(--line);
+  border-radius:99px;
+  background:rgba(9,9,15,.62);
+  backdrop-filter:blur(20px) saturate(150%);
+  -webkit-backdrop-filter:blur(20px) saturate(150%);
+  box-shadow:0 18px 44px -26px rgba(0,0,0,.9);
+  transition:
+    background-color .45s var(--ease),
+    border-color .45s var(--ease),
+    box-shadow .45s var(--ease);
+}
+.site-header.is-scrolled .nav{
+  background:rgba(9,9,15,.86);
+  border-color:var(--line-2);
+  box-shadow:0 22px 50px -26px rgba(0,0,0,1);
+}
 
-        .atmosphere-panel h2 { font-size: 38px; font-weight: 800; margin-bottom: 16px; }
-        .atmosphere-panel p { color: var(--text-muted); font-size: 18px; line-height: 1.8; }
+/* Brand */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-size:16px;
+  font-weight:800;
+  letter-spacing:-.02em;
+  text-decoration:none;
+  color:var(--text);
+}
+.brand__mark{
+  width:34px; height:34px;
+  padding:3px;
+  border-radius:11px;
+  background:rgba(255,255,255,.07);
+  border:1px solid var(--line-2);
+  object-fit:contain;
+  transition:transform .5s var(--ease), background-color .3s ease;
+}
+.brand:hover .brand__mark{ transform:rotate(-8deg) scale(1.06); background:rgba(255,255,255,.12); }
+.brand__text small{
+  display:block;
+  font-size:10.5px;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--text-3);
+  line-height:1;
+  margin-top:2px;
+}
 
-        .atmosphere-img-wrap {
-            background: rgba(0,0,0,0.4); border: 1px solid var(--border-light);
-            border-radius: var(--radius-md); padding: 12px;
-            transform: perspective(1000px) rotateY(-5deg); transition: transform 0.5s;
-        }
-        .atmosphere-panel:hover .atmosphere-img-wrap { transform: perspective(1000px) rotateY(0deg); }
-        .atmosphere-img-wrap img { width: 100%; border-radius: calc(var(--radius-md) - 8px); display: block; }
+/* Desktop links */
+.nav__links{
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+.nav__link{
+  position:relative;
+  padding:10px 16px;
+  border-radius:99px;
+  font-size:14.5px;
+  font-weight:600;
+  color:var(--text-2);
+  text-decoration:none;
+  transition:color .25s ease, background-color .25s ease;
+}
+.nav__link:hover{ color:var(--text); background:rgba(255,255,255,.055); }
 
-        /* =========================================
-           FEATURES BENTO GRID
-           ========================================= */
-        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.nav__actions{ display:flex; align-items:center; gap:10px; }
 
-        .bento-box {
-            background: var(--surface-1); backdrop-filter: blur(10px);
-            border: 1px solid var(--border-light); border-radius: var(--radius-md);
-            padding: 40px 32px; position: relative; z-index: 1; overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        
-        /* Animated Hover Overlay */
-        .bento-box::after {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(135deg, transparent, rgba(0,210,255,0.05), transparent);
-            transform: translateX(-100%); transition: transform 0.6s; z-index: -1;
-        }
+/* Mobile toggle */
+.nav__toggle{
+  display:none;
+  width:42px; height:42px;
+  align-items:center;
+  justify-content:center;
+  border:1px solid var(--line-2);
+  border-radius:99px;
+  background:rgba(255,255,255,.04);
+  color:var(--text);
+  font-size:16px;
+  cursor:pointer;
+  transition:background-color .25s ease, border-color .25s ease;
+}
+.nav__toggle:hover{ background:rgba(255,255,255,.1); }
 
-        .bento-box:hover {
-            transform: translateY(-8px); border-color: rgba(255,255,255,0.3);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-        .bento-box:hover::after { transform: translateX(100%); }
+/* Mobile drawer */
+.mobile-menu{
+  position:fixed;
+  top:78px;
+  left:var(--gutter);
+  right:var(--gutter);
+  z-index:999;
+  padding:14px;
+  border:1px solid var(--line-2);
+  border-radius:var(--r-lg);
+  background:rgba(10,10,16,.94);
+  backdrop-filter:blur(24px) saturate(150%);
+  -webkit-backdrop-filter:blur(24px) saturate(150%);
+  box-shadow:0 30px 70px -20px rgba(0,0,0,1);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(-12px);
+  transition:opacity .3s ease, transform .4s var(--ease), visibility .3s;
+}
+.mobile-menu.is-open{ opacity:1; visibility:visible; transform:translateY(0); }
+.mobile-menu a{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:15px 18px;
+  border-radius:var(--r-sm);
+  font-size:15.5px;
+  font-weight:600;
+  color:var(--text-2);
+  text-decoration:none;
+  transition:background-color .25s ease, color .25s ease;
+}
+.mobile-menu a:hover{ background:rgba(255,255,255,.06); color:var(--text); }
+.mobile-menu .btn{ margin-top:8px; }
 
-        .box-icon {
-            width: 58px; height: 58px; border-radius: 16px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
-            border: 1px solid rgba(255,255,255,0.15);
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: 28px; color: var(--accent-cyan); font-size: 24px;
-            animation: float 6s ease-in-out infinite;
-        }
+/* ============================================================
+   6. SECTIONS — SHARED
+   ============================================================ */
+.section{ padding-block:var(--section-y); position:relative; }
 
-        .bento-box:nth-child(even) .box-icon { color: var(--accent-pink); animation-delay: -3s; }
-        .bento-box h3 { font-size: 22px; font-weight: 800; margin-bottom: 12px; }
-        .bento-box p { font-size: 16px; color: var(--text-muted); line-height: 1.7; }
+.section-head{
+  max-width:720px;
+  margin:0 auto clamp(44px, 5vw, 68px);
+  text-align:center;
+}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:18px;
+  font-size:11.5px;
+  font-weight:800;
+  letter-spacing:.19em;
+  text-transform:uppercase;
+  color:var(--cyan);
+}
+.eyebrow::before{
+  content:'';
+  width:6px; height:6px;
+  border-radius:50%;
+  background:currentColor;
+  box-shadow:0 0 12px currentColor;
+}
+.section-head h2{
+  font-size:var(--fs-h2);
+  font-weight:800;
+  line-height:1.12;
+  letter-spacing:-.032em;
+  margin-bottom:16px;
+}
+.section-head p{
+  font-size:var(--fs-lead);
+  color:var(--text-2);
+  line-height:1.75;
+}
 
-        /* =========================================
-           GALLERY SECTION
-           ========================================= */
-        .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-        
-        .gallery-item {
-            border-radius: var(--radius-md); border: 1px solid var(--border-light);
-            overflow: hidden; background: var(--surface-1); position: relative;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .gallery-item:hover {
-            border-color: var(--accent-cyan); transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-        }
+/* Scroll reveal */
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity .9s var(--ease), transform .9s var(--ease);
+  transition-delay:var(--d, 0ms);
+}
+.reveal.is-visible{ opacity:1; transform:none; }
 
-        .gallery-item img {
-            width: 100%; height: 100%; object-fit: cover; display: block;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s;
-            filter: grayscale(15%) brightness(0.9);
-        }
-        .gallery-item:hover img { transform: scale(1.06); filter: grayscale(0%) brightness(1.1); }
-        .full-span { grid-column: 1 / -1; }
+/* ============================================================
+   7. HERO
+   ============================================================ */
+.hero{
+  padding-top:clamp(150px, 17vw, 216px);
+  padding-bottom:clamp(48px, 6vw, 72px);
+  text-align:center;
+}
+.hero__badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 16px 8px 10px;
+  margin-bottom:26px;
+  border:1px solid var(--line-2);
+  border-radius:99px;
+  background:rgba(255,255,255,.035);
+  backdrop-filter:blur(8px);
+  font-size:12.5px;
+  font-weight:600;
+  color:var(--text-2);
+  opacity:0;
+  animation:heroIn .9s .1s var(--ease) forwards;
+}
+.hero__badge b{
+  padding:4px 10px;
+  border-radius:99px;
+  background:linear-gradient(135deg, var(--cyan), var(--violet));
+  color:#05050a;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
 
-        /* =========================================
-           FOOTER & SUPPORT AUTOMATION
-           ========================================= */
-        footer {
-            border-top: 1px solid var(--border-light); padding: 100px 5% 60px;
-            text-align: center; background: linear-gradient(180deg, transparent, #000);
-        }
-        
-        .footer-badge {
-            display: inline-flex; align-items: center; gap: 10px;
-            padding: 12px 24px; background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1); border-radius: 100px;
-            font-size: 14px; font-weight: 700; margin-bottom: 30px;
-            transition: all 0.3s ease;
-        }
-        .footer-badge:hover { background: rgba(255,255,255,0.08); transform: translateY(-3px); }
+.hero h1{
+  max-width:16ch;
+  margin:0 auto 24px;
+  font-size:var(--fs-h1);
+  font-weight:800;
+  line-height:1.04;
+  letter-spacing:-.042em;
+  opacity:0;
+  animation:heroIn 1s .2s var(--ease) forwards;
+}
+.hero h1 .line-2{
+  display:block;
+  background:linear-gradient(180deg, #ffffff 0%, #b3bccc 62%, #7fd8f5 118%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
 
-        .footer-links { display: flex; justify-content: center; gap: 30px; margin: 30px 0; }
-        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s ease; }
-        .footer-links a:hover { color: var(--accent-cyan); }
+.hero__lead{
+  max-width:640px;
+  margin:0 auto 36px;
+  font-size:var(--fs-lead);
+  line-height:1.75;
+  color:var(--text-2);
+  opacity:0;
+  animation:heroIn 1s .35s var(--ease) forwards;
+}
 
-        .support-fab {
-            position: fixed; bottom: 35px; right: 35px;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
-            color: #fff; width: 65px; height: 65px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 26px; z-index: 2000; text-decoration: none;
-            animation: pulseGlow 3s infinite;
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .support-fab:hover { transform: scale(1.15) translateY(-5px); }
+.hero__actions{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  margin-bottom:22px;
+  opacity:0;
+  animation:heroIn 1s .5s var(--ease) forwards;
+}
 
-        /* =========================================
-           DOWNLOAD MODAL
-           ========================================= */
-        .modal-overlay {
-            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            display: flex; align-items: center; justify-content: center;
-            z-index: 3000; opacity: 0; visibility: hidden; transition: all 0.4s ease;
-        }
-        .modal-overlay.active { opacity: 1; visibility: visible; }
+.hero__meta{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:8px 22px;
+  font-size:13.5px;
+  font-weight:500;
+  color:var(--text-3);
+  opacity:0;
+  animation:heroIn 1s .62s var(--ease) forwards;
+}
+.hero__meta span{ display:inline-flex; align-items:center; gap:7px; }
+.hero__meta i{ color:var(--cyan); font-size:12px; }
 
-        .modal-card {
-            background: var(--surface-1); border: 1px solid rgba(255,255,255,0.15);
-            border-radius: var(--radius-lg); width: 90%; max-width: 520px; padding: 45px;
-            position: relative; box-shadow: 0 40px 80px rgba(0,0,0,1);
-            transform: scale(0.9) translateY(30px); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .modal-overlay.active .modal-card { transform: scale(1) translateY(0); }
+@keyframes heroIn{
+  from{ opacity:0; transform:translateY(26px); }
+  to  { opacity:1; transform:translateY(0); }
+}
 
-        .modal-close {
-            position: absolute; top: 20px; right: 20px;
-            background: rgba(255,255,255,0.05); width: 40px; height: 40px; border-radius: 50%;
-            border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); font-size: 18px;
-            display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s;
-        }
-        .modal-close:hover { background: var(--text-main); color: #000; transform: rotate(90deg); }
+/* Microsoft badge */
+.ms-badge{
+  display:inline-flex;
+  border-radius:var(--r-sm);
+  overflow:hidden;
+  border:1px solid var(--line-2);
+  background:#000;
+  transition:transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s ease;
+}
+.ms-badge:hover{
+  transform:translateY(-3px);
+  border-color:rgba(69,217,255,.45);
+  box-shadow:0 18px 40px -16px rgba(69,217,255,.45);
+}
+.ms-badge img{ height:60px; width:auto; }
 
-        .download-item {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 20px 24px; background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-sm);
-            text-decoration: none; color: var(--text-main); margin-bottom: 14px;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .download-item:hover {
-            background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.3);
-            transform: translateX(8px);
-        }
+/* Video */
+.hero__video{
+  position:relative;
+  width:100%;
+  max-width:1040px;
+  margin:clamp(56px, 7vw, 82px) auto 0;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:var(--r-xl);
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.012));
+  cursor:pointer;
+  opacity:0;
+  animation:heroIn 1.2s .75s var(--ease) forwards;
+  transition:transform .6s var(--ease), border-color .5s ease, box-shadow .6s var(--ease);
+}
+.hero__video:hover{
+  transform:translateY(-6px);
+  border-color:rgba(69,217,255,.32);
+  box-shadow:
+    0 50px 90px -40px rgba(0,0,0,1),
+    0 0 60px -10px rgba(69,217,255,.16);
+}
+.hero__video video{
+  width:100%;
+  border-radius:calc(var(--r-xl) - 12px);
+  background:#000;
+  aspect-ratio:16 / 9;
+  object-fit:cover;
+}
 
-        /* =========================================
-           RESPONSIVE DESIGN
-           ========================================= */
-        @media (max-width: 960px) {
-            .atmosphere-panel { grid-template-columns: 1fr; text-align: center; padding: 40px; }
-            .bento-grid { grid-template-columns: 1fr 1fr; }
-            .hero h1 { font-size: 54px; }
-        }
-        @media (max-width: 768px) {
-            .nav-links .link-item { display: none; }
-            nav { padding: 12px 20px; }
-        }
-        @media (max-width: 600px) {
-            .bento-grid, .gallery-grid { grid-template-columns: 1fr; }
-            .hero { padding-top: 150px; }
-        }
-    </style>
+.sound-toggle{
+  position:absolute;
+  right:26px;
+  bottom:26px;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:11px 20px;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:99px;
+  background:rgba(0,0,0,.68);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  font-size:13.5px;
+  font-weight:700;
+  color:var(--text);
+  cursor:pointer;
+  transition:background-color .3s ease, border-color .3s ease, transform .3s var(--ease), opacity .4s ease;
+}
+.sound-toggle:hover{ transform:translateY(-2px); background:rgba(0,0,0,.85); }
+.sound-toggle.is-active{
+  background:rgba(69,217,255,.18);
+  border-color:var(--cyan);
+  color:#eafaff;
+}
+
+/* ============================================================
+   8. TRUST STRIP
+   ============================================================ */
+.trust{
+  border-block:1px solid var(--line);
+  background:rgba(255,255,255,.012);
+}
+.trust__inner{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:14px clamp(22px, 4vw, 54px);
+  padding:22px 0;
+}
+.trust__item{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  font-size:13.5px;
+  font-weight:600;
+  letter-spacing:.01em;
+  color:var(--text-2);
+  white-space:nowrap;
+}
+.trust__item i{ color:var(--cyan); font-size:13px; }
+
+/* ============================================================
+   9. ATMOSPHERE
+   ============================================================ */
+.atmosphere{
+  position:relative;
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:clamp(36px, 5vw, 64px);
+  align-items:center;
+  padding:clamp(34px, 4.5vw, 60px);
+  border:1px solid var(--line);
+  border-radius:var(--r-xl);
+  background:linear-gradient(150deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,.012) 45%, rgba(4,4,7,1) 100%);
+  overflow:hidden;
+  transition:border-color .5s ease, box-shadow .6s var(--ease);
+}
+.atmosphere::before{
+  content:'';
+  position:absolute;
+  top:-45%; right:-18%;
+  width:min(520px, 70vw);
+  aspect-ratio:1;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(139,92,246,.18) 0%, transparent 62%);
+  pointer-events:none;
+}
+.atmosphere:hover{
+  border-color:rgba(139,92,246,.34);
+  box-shadow:0 40px 80px -50px rgba(139,92,246,.6);
+}
+.atmosphere h2{
+  font-size:clamp(1.7rem, 3vw, 2.35rem);
+  font-weight:800;
+  line-height:1.15;
+  letter-spacing:-.03em;
+  margin-bottom:16px;
+}
+.atmosphere p{ color:var(--text-2); font-size:1.02rem; line-height:1.8; }
+
+.atmosphere__figure{
+  padding:10px;
+  border:1px solid var(--line);
+  border-radius:var(--r-md);
+  background:rgba(0,0,0,.45);
+  transform:perspective(1200px) rotateY(-5deg) rotateX(1.5deg);
+  transition:transform .7s var(--ease);
+}
+.atmosphere:hover .atmosphere__figure{ transform:perspective(1200px) rotateY(0deg) rotateX(0deg); }
+.atmosphere__figure img{ width:100%; border-radius:calc(var(--r-md) - 8px); }
+
+/* ============================================================
+   10. FEATURE GRID
+   ============================================================ */
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:20px;
+}
+
+.card{
+  position:relative;
+  padding:32px 28px 30px;
+  border:1px solid var(--line);
+  border-radius:var(--r-md);
+  background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.013));
+  overflow:hidden;
+  transition:
+    transform .5s var(--ease),
+    border-color .4s ease,
+    background-color .4s ease,
+    box-shadow .5s var(--ease);
+}
+.card::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:radial-gradient(420px 220px at var(--mx, 50%) var(--my, 0%), rgba(69,217,255,.09), transparent 70%);
+  opacity:0;
+  transition:opacity .5s ease;
+  pointer-events:none;
+}
+.card:hover{
+  transform:translateY(-6px);
+  border-color:var(--line-2);
+  box-shadow:0 30px 60px -34px rgba(0,0,0,.95);
+}
+.card:hover::after{ opacity:1; }
+
+.card__icon{
+  display:grid;
+  place-items:center;
+  width:48px; height:48px;
+  margin-bottom:22px;
+  border:1px solid var(--line-2);
+  border-radius:14px;
+  background:linear-gradient(145deg, rgba(255,255,255,.1), rgba(255,255,255,.018));
+  color:var(--cyan);
+  font-size:18px;
+  transition:transform .5s var(--ease), color .4s ease;
+}
+.card:nth-child(even) .card__icon{ color:var(--violet); }
+.card:hover .card__icon{ transform:translateY(-3px) rotate(-4deg); }
+
+.card h3{
+  margin-bottom:10px;
+  font-size:var(--fs-h3);
+  font-weight:800;
+  letter-spacing:-.02em;
+}
+.card p{
+  font-size:14.8px;
+  line-height:1.72;
+  color:var(--text-2);
+}
+
+/* ============================================================
+   11. SPECIFICATIONS
+   ============================================================ */
+.specs{
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  background:rgba(255,255,255,.016);
+  overflow:hidden;
+}
+.spec-row{
+  display:grid;
+  grid-template-columns:minmax(180px, 1fr) 2.1fr;
+  gap:24px;
+  align-items:baseline;
+  padding:22px clamp(20px, 3vw, 34px);
+  border-top:1px solid var(--line);
+  transition:background-color .3s ease;
+}
+.spec-row:first-child{ border-top:0; }
+.spec-row:hover{ background:rgba(255,255,255,.022); }
+.spec-row dt{
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--text-3);
+}
+.spec-row dd{
+  font-size:15.5px;
+  font-weight:500;
+  color:var(--text);
+}
+
+/* ============================================================
+   12. GALLERY
+   ============================================================ */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:20px;
+}
+.gallery figure{
+  position:relative;
+  margin:0;
+  border:1px solid var(--line);
+  border-radius:var(--r-md);
+  background:rgba(255,255,255,.02);
+  overflow:hidden;
+  transition:border-color .4s ease, transform .5s var(--ease), box-shadow .5s var(--ease);
+}
+.gallery figure:hover{
+  border-color:rgba(69,217,255,.38);
+  transform:translateY(-5px);
+  box-shadow:0 30px 60px -34px rgba(0,0,0,.95);
+}
+.gallery .span-2{ grid-column:1 / -1; }
+
+.gallery img{
+  width:100%;
+  height:100%;
+  aspect-ratio:16 / 9;
+  object-fit:cover;
+  filter:saturate(.88) brightness(.92);
+  transition:transform .8s var(--ease), filter .5s ease;
+}
+.gallery .span-2 img{ aspect-ratio:21 / 9; }
+.gallery figure:hover img{ transform:scale(1.035); filter:saturate(1) brightness(1.03); }
+
+.gallery figcaption{
+  position:absolute;
+  left:0; right:0; bottom:0;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:36px 22px 18px;
+  font-size:13.5px;
+  font-weight:700;
+  letter-spacing:.01em;
+  color:#fff;
+  background:linear-gradient(180deg, transparent, rgba(0,0,0,.82));
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity .4s ease, transform .5s var(--ease);
+}
+.gallery figure:hover figcaption{ opacity:1; transform:translateY(0); }
+.gallery figcaption i{ color:var(--cyan); font-size:12px; }
+
+/* ============================================================
+   13. FAQ
+   ============================================================ */
+.faq{ max-width:820px; margin-inline:auto; }
+
+.faq details{
+  border:1px solid var(--line);
+  border-radius:var(--r-sm);
+  background:rgba(255,255,255,.018);
+  margin-bottom:12px;
+  overflow:hidden;
+  transition:border-color .3s ease, background-color .3s ease;
+}
+.faq details[open]{
+  border-color:var(--line-2);
+  background:rgba(255,255,255,.032);
+}
+
+.faq summary{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:20px clamp(18px, 2.5vw, 26px);
+  font-size:16.5px;
+  font-weight:700;
+  letter-spacing:-.015em;
+  cursor:pointer;
+  list-style:none;
+  transition:color .25s ease;
+}
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary:hover{ color:var(--cyan); }
+
+.faq summary i{
+  flex-shrink:0;
+  font-size:13px;
+  color:var(--text-3);
+  transition:transform .4s var(--ease), color .3s ease;
+}
+.faq details[open] summary i{ transform:rotate(45deg); color:var(--cyan); }
+
+.faq__body{
+  padding:0 clamp(18px, 2.5vw, 26px) 24px;
+  font-size:15.2px;
+  line-height:1.78;
+  color:var(--text-2);
+  max-width:70ch;
+}
+
+/* ============================================================
+   14. CTA BAND
+   ============================================================ */
+.cta{
+  position:relative;
+  padding:clamp(44px, 6vw, 76px) clamp(26px, 5vw, 64px);
+  text-align:center;
+  border:1px solid var(--line-2);
+  border-radius:var(--r-xl);
+  background:
+    radial-gradient(700px 320px at 50% 0%, rgba(69,217,255,.11), transparent 68%),
+    radial-gradient(700px 320px at 50% 100%, rgba(139,92,246,.13), transparent 68%),
+    rgba(255,255,255,.022);
+  overflow:hidden;
+}
+.cta h2{
+  font-size:clamp(1.7rem, 3.4vw, 2.5rem);
+  font-weight:800;
+  letter-spacing:-.035em;
+  line-height:1.14;
+  margin-bottom:16px;
+}
+.cta p{
+  max-width:560px;
+  margin:0 auto 34px;
+  font-size:var(--fs-lead);
+  color:var(--text-2);
+  line-height:1.75;
+}
+.cta__actions{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+}
+.cta__note{
+  margin-top:22px;
+  font-size:13px;
+  color:var(--text-3);
+}
+
+/* ============================================================
+   15. FOOTER
+   ============================================================ */
+.site-footer{
+  margin-top:clamp(60px, 8vw, 110px);
+  padding:clamp(56px, 7vw, 84px) 0 40px;
+  border-top:1px solid var(--line);
+  background:linear-gradient(180deg, transparent, rgba(0,0,0,.6));
+}
+.footer__top{
+  display:grid;
+  grid-template-columns:1.6fr 1fr 1fr;
+  gap:clamp(28px, 5vw, 64px);
+  padding-bottom:48px;
+}
+.footer__brand p{
+  margin-top:16px;
+  max-width:38ch;
+  font-size:14.5px;
+  line-height:1.75;
+  color:var(--text-2);
+}
+.footer__col h4{
+  margin-bottom:18px;
+  font-size:11.5px;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--text-3);
+}
+.footer__col a{
+  display:block;
+  padding:7px 0;
+  font-size:14.5px;
+  font-weight:500;
+  color:var(--text-2);
+  text-decoration:none;
+  transition:color .25s ease, transform .3s var(--ease);
+}
+.footer__col a:hover{ color:var(--cyan); transform:translateX(3px); }
+
+.footer__bottom{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding-top:28px;
+  border-top:1px solid var(--line);
+  font-size:13.5px;
+  color:var(--text-3);
+}
+.footer__bottom strong{ color:var(--text-2); font-weight:600; }
+
+.footer__badge{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:9px 18px;
+  border:1px solid var(--line);
+  border-radius:99px;
+  background:rgba(255,255,255,.03);
+  font-size:12.5px;
+  font-weight:700;
+  color:var(--text-2);
+}
+.footer__badge i{ color:var(--pink); font-size:11px; }
+
+/* ============================================================
+   16. SUPPORT FAB
+   ============================================================ */
+.support-fab{
+  position:fixed;
+  right:clamp(18px, 3vw, 34px);
+  bottom:clamp(18px, 3vw, 34px);
+  z-index:900;
+  display:grid;
+  place-items:center;
+  width:58px; height:58px;
+  border-radius:50%;
+  background:linear-gradient(135deg, var(--violet), var(--cyan));
+  color:#fff;
+  font-size:21px;
+  text-decoration:none;
+  box-shadow:0 16px 40px -14px rgba(139,92,246,.75);
+  transition:transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.support-fab::before{
+  content:'';
+  position:absolute;
+  inset:-4px;
+  border-radius:50%;
+  border:1px solid rgba(139,92,246,.45);
+  animation:fabPulse 3.2s ease-out infinite;
+  pointer-events:none;
+}
+.support-fab:hover{
+  transform:translateY(-4px) scale(1.06);
+  box-shadow:0 22px 50px -14px rgba(69,217,255,.75);
+}
+@keyframes fabPulse{
+  0%  { transform:scale(1);    opacity:.8; }
+  70% { transform:scale(1.35); opacity:0;  }
+  100%{ transform:scale(1.35); opacity:0;  }
+}
+
+/* ============================================================
+   17. MODAL
+   ============================================================ */
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:3000;
+  display:grid;
+  place-items:center;
+  padding:20px;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .35s ease, visibility .35s;
+}
+.modal.is-open{ opacity:1; visibility:visible; }
+
+.modal__backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(2,2,5,.82);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+
+.modal__card{
+  position:relative;
+  width:100%;
+  max-width:520px;
+  max-height:calc(100vh - 40px);
+  overflow-y:auto;
+  padding:clamp(28px, 4vw, 42px);
+  border:1px solid var(--line-2);
+  border-radius:var(--r-lg);
+  background:linear-gradient(180deg, rgba(20,20,28,.98), rgba(10,10,16,.99));
+  box-shadow:0 50px 100px -30px rgba(0,0,0,1);
+  transform:scale(.94) translateY(22px);
+  transition:transform .5s var(--ease);
+}
+.modal.is-open .modal__card{ transform:scale(1) translateY(0); }
+
+.modal__close{
+  position:absolute;
+  top:16px; right:16px;
+  display:grid;
+  place-items:center;
+  width:38px; height:38px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  background:rgba(255,255,255,.04);
+  color:var(--text-2);
+  font-size:15px;
+  cursor:pointer;
+  transition:background-color .25s ease, color .25s ease, transform .4s var(--ease);
+}
+.modal__close:hover{ background:#fff; color:#05050a; transform:rotate(90deg); }
+
+.modal__head{ text-align:center; margin-bottom:28px; }
+.modal__head h3{
+  font-size:1.6rem;
+  font-weight:800;
+  letter-spacing:-.03em;
+  margin-bottom:8px;
+}
+.modal__head p{ font-size:14.5px; color:var(--text-2); }
+
+.modal__primary{
+  display:flex;
+  justify-content:center;
+  margin-bottom:24px;
+}
+
+.dl-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:17px 20px;
+  margin-bottom:11px;
+  border:1px solid var(--line);
+  border-radius:var(--r-sm);
+  background:rgba(255,255,255,.028);
+  text-decoration:none;
+  transition:background-color .3s ease, border-color .3s ease, transform .4s var(--ease);
+}
+.dl-item:last-of-type{ margin-bottom:0; }
+.dl-item:hover{
+  background:rgba(255,255,255,.07);
+  border-color:rgba(255,255,255,.24);
+  transform:translateX(5px);
+}
+.dl-item__text strong{
+  display:block;
+  font-size:15.5px;
+  font-weight:700;
+  margin-bottom:3px;
+}
+.dl-item__text span{
+  font-size:13px;
+  color:var(--text-3);
+}
+.dl-item > i{
+  flex-shrink:0;
+  font-size:15px;
+  color:var(--cyan);
+}
+
+.modal__foot{
+  margin-top:22px;
+  padding-top:20px;
+  border-top:1px solid var(--line);
+  text-align:center;
+  font-size:12.5px;
+  color:var(--text-3);
+}
+
+/* Scroll lock */
+body.is-locked{ overflow:hidden; }
+
+/* ============================================================
+   18. RESPONSIVE
+   ============================================================ */
+@media (max-width:1024px){
+  .grid-3{ grid-template-columns:repeat(2, 1fr); }
+  .footer__top{ grid-template-columns:1fr 1fr; }
+  .footer__brand{ grid-column:1 / -1; }
+}
+
+@media (max-width:900px){
+  .nav__links{ display:none; }
+  .nav__toggle{ display:inline-flex; }
+  .atmosphere{ grid-template-columns:1fr; }
+  .atmosphere__figure{ transform:none; }
+}
+
+@media (max-width:768px){
+  html{ scroll-padding-top:96px; }
+  .nav{ padding:9px 9px 9px 16px; }
+  .brand__text small{ display:none; }
+}
+
+@media (max-width:680px){
+  .grid-3{ grid-template-columns:1fr; }
+  .gallery{ grid-template-columns:1fr; }
+  .gallery .span-2{ grid-column:auto; }
+  .gallery .span-2 img,
+  .gallery img{ aspect-ratio:16 / 10; }
+  .spec-row{ grid-template-columns:1fr; gap:6px; }
+  .hero__actions{ flex-direction:column; align-items:stretch; }
+  .hero__actions .btn{ width:100%; }
+  .ms-badge{ justify-content:center; }
+  .ms-badge img{ height:54px; }
+  .sound-toggle{ right:18px; bottom:18px; padding:9px 15px; font-size:12.5px; }
+  .footer__top{ grid-template-columns:1fr; gap:34px; }
+  .footer__bottom{ flex-direction:column; align-items:flex-start; }
+}
+
+/* ============================================================
+   19. REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+  .reveal{ opacity:1 !important; transform:none !important; }
+  .hero h1,.hero__lead,.hero__actions,.hero__badge,.hero__meta,.hero__video{
+    opacity:1 !important;
+    animation:none !important;
+  }
+}
+
+/* ============================================================
+   20. PRINT
+   ============================================================ */
+@media print{
+  .site-header, .support-fab, .modal, .hero__video, .bg-layer{ display:none !important; }
+  body{ background:#fff; color:#000; }
+}
+</style>
 </head>
+
 <body>
 
-    <!-- Animated Background Mesh -->
-    <div class="animated-bg"></div>
+<!-- Ambient background -->
+<div class="bg-layer" aria-hidden="true"></div>
 
-    <!-- Wrapped Nav for Bulletproof Centering -->
-    <div class="header-wrapper">
-        <nav>
-            <a href="#" class="logo-group">
-                <img src="Queralogo.ico" alt="Queramusic Logo" class="icon" onerror="this.style.display='none'">
-                <span>Queramusic.in</span>
-            </a>
-            <div class="nav-links">
-                <a href="#atmosphere" class="link-item">Atmosphere</a>
-                <a href="#features" class="link-item">Features</a>
-                <a href="#gallery" class="link-item">Gallery</a>
-                <a href="#" class="btn-premium" onclick="openModal(event)">Download</a>
-            </div>
-        </nav>
-    </div>
+<!-- Accessibility skip link -->
+<a class="skip-link" href="#main">Skip to main content</a>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Pure sound playback.<br><span class="gradient-text">Engineered for perfection.</span></h1>
-        <p>Queramusic is a fast, zero-telemetry offline music player with studio-grade DSP, bit-perfect processing, and immersive 3D sound rendering built from the ground up.</p>
-        
-        <div class="hero-actions">
-            <a href="https://get.microsoft.com/installer/download/9mv19rj2l1hk?referrer=appbadge" target="_self" class="ms-badge-link">
-                <img src="https://get.microsoft.com/images/en-us%20dark.svg" alt="Get it from Microsoft" class="ms-badge-img">
-            </a>
-        </div>
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="site-header" id="siteHeader">
+  <nav class="nav" aria-label="Primary">
 
-        <div class="video-container" id="videoWrapper">
-            <video id="promoVideo" src="Videoweb.mp4" autoplay loop muted playsinline></video>
-            <div class="sound-pill" id="soundIndicator">
-                <i class="fa-solid fa-volume-xmark"></i> Sound muted
-            </div>
-        </div>
-    </section>
-
-    <!-- Atmosphere Section -->
-    <section class="section-wrap" id="atmosphere">
-        <div class="atmosphere-panel reveal-element">
-            <div>
-                <div style="color: var(--accent-purple); font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px;">Spatial Engine</div>
-                <h2>Queramusic Atmosphere™</h2>
-                <p>Our proprietary immersive audio algorithm is designed to widen soundstages on local files. It converts flat stereo output into realistic, spacious studio acoustics without distortion, phase cancellation, or latency. Hear your music exactly as the producer intended.</p>
-            </div>
-            <div class="atmosphere-img-wrap">
-                <img src="image_03ad98.jpg" alt="Atmosphere View" onerror="this.style.opacity='0'">
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Bento Grid -->
-    <section class="section-wrap" id="features">
-        <div class="section-header reveal-element">
-            <h2>Uncompromising Architecture</h2>
-        </div>
-        <div class="bento-grid">
-            <div class="bento-box reveal-element">
-                <div class="box-icon"><i class="fa-solid fa-wave-square"></i></div>
-                <h3>Hi-Res Engine</h3>
-                <p>Bit-perfect raw rendering designed specifically for FLAC, ALAC, and high-fidelity lossless audio playback without resampling.</p>
-            </div>
-            <div class="bento-box reveal-element" style="transition-delay: 0.1s;">
-                <div class="box-icon"><i class="fa-solid fa-sliders"></i></div>
-                <h3>10-Band EQ</h3>
-                <p>Detailed curve manipulation across frequencies with customizable presets tailored for specific headphone models.</p>
-            </div>
-            <div class="bento-box reveal-element" style="transition-delay: 0.2s;">
-                <div class="box-icon"><i class="fa-solid fa-microphone-lines"></i></div>
-                <h3>Studio DSP</h3>
-                <p>Equipped with Direct Monitoring, phase correction, punchy sub-bass generation, and intelligent vocal enhancement.</p>
-            </div>
-            <div class="bento-box reveal-element">
-                <div class="box-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                <h3>Private & Offline</h3>
-                <p>Zero tracking, no analytical payloads, no telemetry, and a complete local directory scan for absolute privacy.</p>
-            </div>
-            <div class="bento-box reveal-element" style="transition-delay: 0.1s;">
-                <div class="box-icon"><i class="fa-solid fa-microchip"></i></div>
-                <h3>Lightweight Core</h3>
-                <p>Optimized C++ architecture preserves minimal memory footprint and ultra-low CPU cycles, perfect for background listening.</p>
-            </div>
-            <div class="bento-box reveal-element" style="transition-delay: 0.2s;">
-                <div class="box-icon"><i class="fa-solid fa-headphones-simple"></i></div>
-                <h3>Spatial Acoustics</h3>
-                <p>Adaptive 3D sound placement providing unmatched surround immersion for standard stereo headphones.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Grid -->
-    <section class="section-wrap" id="gallery">
-        <div class="section-header reveal-element">
-            <h2>Designed with precision</h2>
-        </div>
-        <div class="gallery-grid">
-            <div class="gallery-item full-span reveal-element">
-                <img src="1.png" alt="Promo View" onerror="this.style.background='#111'">
-            </div>
-            <div class="gallery-item reveal-element">
-                <img src="2.png" alt="Interface 1" onerror="this.style.background='#111'">
-            </div>
-            <div class="gallery-item reveal-element" style="transition-delay: 0.1s;">
-                <img src="4.png" alt="Interface 2" onerror="this.style.background='#111'">
-            </div>
-            <div class="gallery-item full-span reveal-element">
-                <img src="3.png" alt="Interface 3" onerror="this.style.background='#111'">
-            </div>
-        </div>
-    </section>
-
-    <!-- Animated Support Fab -->
-    <a href="mailto:quera.indiamusic@gmail.com?subject=Quera%20Music%20Premium%20Support&body=Hi%20Quera%20Support%20Team,%0A%0AHow%20can%20we%20help%20you%20today?%0A" class="support-fab" title="Contact Support">
-        <i class="fa-solid fa-headset"></i>
+    <a href="#" class="brand" aria-label="Queramusic — home">
+      <img src="Queralogo.ico" alt="" class="brand__mark" width="34" height="34"
+           onerror="this.style.visibility='hidden'">
+      <span class="brand__text">
+        Queramusic
+        <small>Studio Player</small>
+      </span>
     </a>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-badge">
-            <i class="fa-solid fa-heart" style="color: var(--accent-pink);"></i> Engineered in India • Designed for Audiophiles
-        </div>
-        
-        <div class="footer-links">
-            <a href="https://queramusic.in/pvptp.html">Privacy Policy</a>
-            <a href="mailto:quera.indiamusic@gmail.com">Support</a>
-            <a href="#features">Features</a>
-        </div>
-
-        <p style="font-size: 16px; color: var(--text-muted); font-weight: 500;">Developed by <strong style="color: #fff;">Samarth Dwivedi</strong> & <strong style="color: #fff;">Quera INDIA LTD</strong></p>
-        <p style="font-size: 14px; margin-top: 14px; color: #555;">&copy; 2026 Queramusic.in. All rights reserved.</p>
-    </footer>
-
-    <!-- Download Modal -->
-    <div class="modal-overlay" id="downloadModal">
-        <div class="modal-card">
-            <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
-            <h3 style="font-size: 30px; font-weight: 800; margin-bottom: 10px; text-align: center; color: #fff;">Download</h3>
-            <p style="font-size: 16px; color: var(--text-muted); margin-bottom: 36px; text-align: center;">Select your preferred installation method.</p>
-
-            <div style="display: flex; justify-content: center; margin-bottom: 28px;">
-                <a href="https://get.microsoft.com/installer/download/9mv19rj2l1hk?referrer=appbadge" target="_self" class="ms-badge-link" style="border-radius: 14px;">
-                    <img src="https://get.microsoft.com/images/en-us%20dark.svg" width="220" class="ms-badge-img">
-                </a>
-            </div>
-
-            <a href="https://apps.microsoft.com/detail/9MV19RJ2L1HK" target="_blank" class="download-item">
-                <div>
-                    <strong style="display: block; font-size: 17px; margin-bottom: 4px;">Microsoft Web Store</strong>
-                    <span style="font-size: 14px; color: var(--text-muted);">View full store listing</span>
-                </div>
-                <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--accent-cyan); font-size: 18px;"></i>
-            </a>
-
-            <a href="https://drive.google.com/file/d/1SFjnhwnB_4M61hb2ir68RnPM3guuh0w3/view?usp=drive_link" target="_blank" class="download-item">
-                <div>
-                    <strong style="display: block; font-size: 17px; margin-bottom: 4px;">64-bit Direct Installer</strong>
-                    <span style="font-size: 14px; color: var(--text-muted);">97.8 MB • Standalone .exe</span>
-                </div>
-                <i class="fa-solid fa-download" style="color: var(--accent-cyan); font-size: 18px;"></i>
-            </a>
-
-            <a href="https://drive.google.com/file/d/1ui2XHSkUQbMi9Jg6CEvHK8SnbWLQjsAe/view?usp=drive_link" target="_blank" class="download-item">
-                <div>
-                    <strong style="display: block; font-size: 17px; margin-bottom: 4px;">32-bit Legacy Build</strong>
-                    <span style="font-size: 14px; color: var(--text-muted);">82.4 MB • For older hardware</span>
-                </div>
-                <i class="fa-solid fa-download" style="color: var(--accent-cyan); font-size: 18px;"></i>
-            </a>
-        </div>
+    <div class="nav__links">
+      <a href="#atmosphere" class="nav__link">Atmosphere</a>
+      <a href="#features"   class="nav__link">Features</a>
+      <a href="#specs"      class="nav__link">Specifications</a>
+      <a href="#gallery"    class="nav__link">Gallery</a>
+      <a href="#faq"        class="nav__link">FAQ</a>
     </div>
 
-    <!-- Animation & Interactive Scripts -->
-    <script>
-        // Smooth Intersection Observer for Scroll Reveals
-        document.addEventListener("DOMContentLoaded", () => {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15
-            };
+    <div class="nav__actions">
+      <button type="button" class="btn btn--primary btn--sm" data-modal-open>
+        Download
+      </button>
+      <button type="button"
+              class="nav__toggle"
+              id="navToggle"
+              aria-expanded="false"
+              aria-controls="mobileMenu"
+              aria-label="Open navigation menu">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+    </div>
 
-            const observer = new IntersectionObserver((entries, obs) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        obs.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
+  </nav>
+</header>
 
-            document.querySelectorAll('.reveal-element').forEach(el => observer.observe(el));
-        });
+<!-- Mobile drawer -->
+<div class="mobile-menu" id="mobileMenu" hidden>
+  <a href="#atmosphere">Atmosphere <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+  <a href="#features">Features <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+  <a href="#specs">Specifications <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+  <a href="#gallery">Gallery <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+  <a href="#faq">FAQ <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+  <button type="button" class="btn btn--primary btn--block" data-modal-open>
+    <i class="fa-solid fa-download" aria-hidden="true"></i> Download for Windows
+  </button>
+</div>
 
-        // Interactive Video Sound Toggle
-        const videoWrapper = document.getElementById('videoWrapper');
-        const video = document.getElementById('promoVideo');
-        const indicator = document.getElementById('soundIndicator');
+<!-- ============================================================
+     MAIN
+     ============================================================ -->
+<main id="main">
 
-        if(videoWrapper && video && indicator) {
-            videoWrapper.addEventListener('click', () => {
-                if (video.muted) {
-                    video.muted = false;
-                    indicator.innerHTML = '<i class="fa-solid fa-volume-high"></i> Audio Active';
-                    indicator.style.color = '#fff';
-                    indicator.style.background = 'rgba(0, 210, 255, 0.25)';
-                    indicator.style.borderColor = 'var(--accent-cyan)';
-                    setTimeout(() => indicator.style.opacity = '0', 2500);
-                } else {
-                    video.muted = true;
-                    indicator.style.opacity = '1';
-                    indicator.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> Sound muted';
-                    indicator.style.background = 'rgba(0, 0, 0, 0.7)';
-                    indicator.style.borderColor = 'rgba(255,255,255,0.2)';
-                }
-            });
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <section class="hero container" aria-labelledby="heroTitle">
+
+    <div class="hero__badge">
+      <b>Free</b>
+      <span>Windows 10 &amp; 11 · No account required</span>
+    </div>
+
+    <h1 id="heroTitle">
+      Pure sound playback.
+      <span class="line-2">Engineered for perfection.</span>
+    </h1>
+
+    <p class="hero__lead">
+      A fast, zero-telemetry offline music player with studio-grade DSP,
+      bit-perfect processing and immersive spatial rendering — built from the
+      ground up for people who actually listen.
+    </p>
+
+    <div class="hero__actions">
+      <a href="https://get.microsoft.com/installer/download/9mv19rj2l1hk?referrer=appbadge"
+         class="ms-badge" target="_self" rel="noopener">
+        <img src="https://get.microsoft.com/images/en-us%20dark.svg"
+             alt="Get Queramusic from Microsoft" height="60">
+      </a>
+      <a href="#features" class="btn btn--ghost">
+        Explore features <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+      </a>
+    </div>
+
+    <div class="hero__meta">
+      <span><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Zero telemetry</span>
+      <span><i class="fa-solid fa-wifi" aria-hidden="true"></i> Works fully offline</span>
+      <span><i class="fa-solid fa-wave-square" aria-hidden="true"></i> Bit-perfect output</span>
+    </div>
+
+    <!-- Product video -->
+    <div class="hero__video" id="videoWrapper" role="group" aria-label="Product showcase video">
+      <video id="promoVideo"
+             src="Videoweb.mp4"
+             autoplay loop muted playsinline
+             aria-label="Queramusic interface walkthrough"></video>
+
+      <button type="button"
+              class="sound-toggle"
+              id="soundToggle"
+              aria-pressed="false">
+        <i class="fa-solid fa-volume-xmark" aria-hidden="true"></i>
+        <span id="soundLabel">Sound off</span>
+      </button>
+    </div>
+
+  </section>
+
+  <!-- ── TRUST STRIP ──────────────────────────────────────── -->
+  <div class="trust">
+    <div class="container">
+      <ul class="trust__inner">
+        <li class="trust__item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> No ads, no subscriptions</li>
+        <li class="trust__item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Lossless &amp; hi-res ready</li>
+        <li class="trust__item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Local library only</li>
+        <li class="trust__item"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Engineered in India</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── ATMOSPHERE ───────────────────────────────────────── -->
+  <section class="section container" id="atmosphere" aria-labelledby="atmosphereTitle">
+    <div class="atmosphere reveal">
+
+      <div>
+        <span class="eyebrow">Spatial Engine</span>
+        <h2 id="atmosphereTitle">Queramusic Atmosphere™</h2>
+        <p>
+          Our proprietary immersive audio algorithm widens the soundstage of
+          local files. It converts flat stereo output into realistic, spacious
+          studio acoustics — without distortion, phase cancellation or added
+          latency. You hear the mix the way the producer intended it.
+        </p>
+      </div>
+
+      <figure class="atmosphere__figure">
+        <img src="image_03ad98.jpg"
+             alt="Queramusic Atmosphere spatial audio interface"
+             loading="lazy" decoding="async"
+             onerror="this.closest('figure').style.display='none'">
+      </figure>
+
+    </div>
+  </section>
+
+  <!-- ── FEATURES ─────────────────────────────────────────── -->
+  <section class="section container" id="features" aria-labelledby="featuresTitle">
+    <div class="section-head reveal">
+      <span class="eyebrow">Capabilities</span>
+      <h2 id="featuresTitle">Uncompromising architecture</h2>
+      <p>
+        Every component was written for one purpose: delivering your files
+        to your ears without alteration.
+      </p>
+    </div>
+
+    <div class="grid-3">
+
+      <article class="card reveal">
+        <div class="card__icon"><i class="fa-solid fa-wave-square" aria-hidden="true"></i></div>
+        <h3>Hi-Res Engine</h3>
+        <p>Bit-perfect raw rendering built for FLAC, ALAC and high-fidelity lossless playback — no resampling, no hidden processing.</p>
+      </article>
+
+      <article class="card reveal" style="--d:80ms">
+        <div class="card__icon"><i class="fa-solid fa-sliders" aria-hidden="true"></i></div>
+        <h3>10-Band Equalizer</h3>
+        <p>Precise curve manipulation across the frequency spectrum, with customisable presets tuned for specific headphone models.</p>
+      </article>
+
+      <article class="card reveal" style="--d:160ms">
+        <div class="card__icon"><i class="fa-solid fa-microphone-lines" aria-hidden="true"></i></div>
+        <h3>Studio DSP</h3>
+        <p>Direct monitoring, phase correction, punchy sub-bass generation and intelligent vocal enhancement — all in real time.</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
+        <h3>Private &amp; Offline</h3>
+        <p>Zero tracking, no analytics payloads, no telemetry and no accounts. Your library is scanned locally and stays there.</p>
+      </article>
+
+      <article class="card reveal" style="--d:80ms">
+        <div class="card__icon"><i class="fa-solid fa-microchip" aria-hidden="true"></i></div>
+        <h3>Lightweight Core</h3>
+        <p>An optimised native architecture keeps memory and CPU usage minimal — ideal for background listening while you work.</p>
+      </article>
+
+      <article class="card reveal" style="--d:160ms">
+        <div class="card__icon"><i class="fa-solid fa-headphones-simple" aria-hidden="true"></i></div>
+        <h3>Spatial Acoustics</h3>
+        <p>Adaptive 3D sound placement delivering convincing surround immersion through ordinary stereo headphones.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ── SPECIFICATIONS ───────────────────────────────────── -->
+  <section class="section container" id="specs" aria-labelledby="specsTitle">
+    <div class="section-head reveal">
+      <span class="eyebrow">Technical</span>
+      <h2 id="specsTitle">Specifications</h2>
+      <p>Full transparency on what the player actually does under the hood.</p>
+    </div>
+
+    <dl class="specs reveal">
+      <div class="spec-row">
+        <dt>Audio Engine</dt>
+        <dd>High-precision floating-point DSP pipeline with bit-perfect pass-through mode</dd>
+      </div>
+      <div class="spec-row">
+        <dt>Supported Formats</dt>
+        <dd>FLAC, ALAC, WAV, AIFF, APE, MP3, AAC, OGG, Opus, WMA</dd>
+      </div>
+      <div class="spec-row">
+        <dt>Maximum Resolution</dt>
+        <dd>Up to 384 kHz / 32-bit lossless playback</dd>
+      </div>
+      <div class="spec-row">
+        <dt>Audio Output</dt>
+        <dd>WASAPI Exclusive &amp; Shared, ASIO, DirectSound</dd>
+      </div>
+      <div class="spec-row">
+        <dt>Equalizer</dt>
+        <dd>10-band graphic EQ with saved custom presets</dd>
+      </div>
+      <div class="spec-row">
+        <dt>Playback Features</dt>
+        <dd>Gapless playback, crossfade, ReplayGain, queue management</dd>
+      </div>
+      <div class="spec-row">
+        <dt>Privacy</dt>
+        <dd>No telemetry, no analytics, no network calls required</dd>
+      </div>
+      <div class="spec-row">
+        <dt>System Requirements</dt>
+        <dd>Windows 10 (64-bit) or Windows 11 · 32-bit legacy build available</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- ── GALLERY ──────────────────────────────────────────── -->
+  <section class="section container" id="gallery" aria-labelledby="galleryTitle">
+    <div class="section-head reveal">
+      <span class="eyebrow">Interface</span>
+      <h2 id="galleryTitle">Designed with precision</h2>
+      <p>A focused interface that keeps the music in front and everything else out of the way.</p>
+    </div>
+
+    <div class="gallery">
+      <figure class="span-2 reveal">
+        <img src="1.png" alt="Queramusic main player interface" loading="lazy" decoding="async">
+        <figcaption><i class="fa-solid fa-circle" aria-hidden="true"></i> Main playback view</figcaption>
+      </figure>
+
+      <figure class="reveal">
+        <img src="2.png" alt="Queramusic equalizer and DSP controls" loading="lazy" decoding="async">
+        <figcaption><i class="fa-solid fa-circle" aria-hidden="true"></i> Equalizer &amp; DSP</figcaption>
+      </figure>
+
+      <figure class="reveal" style="--d:80ms">
+        <img src="4.png" alt="Queramusic library and playlist management" loading="lazy" decoding="async">
+        <figcaption><i class="fa-solid fa-circle" aria-hidden="true"></i> Library management</figcaption>
+      </figure>
+
+      <figure class="span-2 reveal">
+        <img src="3.png" alt="Queramusic spatial audio settings" loading="lazy" decoding="async">
+        <figcaption><i class="fa-solid fa-circle" aria-hidden="true"></i> Atmosphere spatial settings</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ── FAQ ──────────────────────────────────────────────── -->
+  <section class="section container" id="faq" aria-labelledby="faqTitle">
+    <div class="section-head reveal">
+      <span class="eyebrow">Questions</span>
+      <h2 id="faqTitle">Frequently asked</h2>
+    </div>
+
+    <div class="faq reveal">
+
+      <details>
+        <summary>Is Queramusic really free? <i class="fa-solid fa-plus" aria-hidden="true"></i></summary>
+        <div class="faq__body">
+          Yes. The core player is completely free to download and use, with no
+          advertisements, no feature paywalls and no subscription. Optional
+          premium support is available if you want to contribute to development.
+        </div>
+      </details>
+
+      <details>
+        <summary>Does it collect any personal data? <i class="fa-solid fa-plus" aria-hidden="true"></i></summary>
+        <div class="faq__body">
+          No. Queramusic contains no telemetry, no analytics SDKs and no
+          advertising identifiers. There are no accounts and no sign-in. The
+          application does not need an internet connection to function — your
+          library is scanned and indexed entirely on your machine.
+        </div>
+      </details>
+
+      <details>
+        <summary>Which audio formats are supported? <i class="fa-solid fa-plus" aria-hidden="true"></i></summary>
+        <div class="faq__body">
+          FLAC, ALAC, WAV, AIFF, APE, MP3, AAC, OGG, Opus and WMA are supported
+          out of the box, with resolutions up to 384 kHz / 32-bit in lossless
+          bit-perfect mode.
+        </div>
+      </details>
+
+      <details>
+        <summary>Will it work on my computer? <i class="fa-solid fa-plus" aria-hidden="true"></i></summary>
+        <div class="faq__body">
+          Queramusic runs on Windows 10 (64-bit) and Windows 11. A separate
+          32-bit legacy build is available for older hardware — look for it in
+          the download window.
+        </div>
+      </details>
+
+      <details>
+        <summary>How do updates work? <i class="fa-solid fa-plus" aria-hidden="true"></i></summary>
+        <div class="faq__body">
+          If you install through the Microsoft Store, updates are delivered
+          automatically. If you use the standalone installer, simply download
+          the latest build and install it over your existing version — your
+          settings and library index are preserved.
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ── CTA ──────────────────────────────────────────────── -->
+  <section class="section container" aria-labelledby="ctaTitle">
+    <div class="cta reveal">
+      <h2 id="ctaTitle">Hear your library properly</h2>
+      <p>
+        Download Queramusic and hear the difference a bit-perfect engine makes.
+        Free, offline, and yours in under a minute.
+      </p>
+
+      <div class="cta__actions">
+        <button type="button" class="btn btn--primary" data-modal-open>
+          <i class="fa-solid fa-download" aria-hidden="true"></i> Download for Windows
+        </button>
+        <a href="mailto:quera.indiamusic@gmail.com" class="btn btn--ghost">
+          <i class="fa-solid fa-headset" aria-hidden="true"></i> Contact support
+        </a>
+      </div>
+
+      <p class="cta__note">Windows 10 &amp; 11 · 64-bit and 32-bit builds available</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer">
+  <div class="container">
+
+    <div class="footer__top">
+
+      <div class="footer__brand">
+        <a href="#" class="brand" aria-label="Queramusic — home">
+          <img src="Queralogo.ico" alt="" class="brand__mark" width="34" height="34"
+               onerror="this.style.visibility='hidden'">
+          <span class="brand__text">Queramusic</span>
+        </a>
+        <p>
+          A privacy-first, bit-perfect music player for Windows, built for
+          listeners who care about how their music actually sounds.
+        </p>
+      </div>
+
+      <nav class="footer__col" aria-label="Product">
+        <h4>Product</h4>
+        <a href="#features">Features</a>
+        <a href="#specs">Specifications</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <nav class="footer__col" aria-label="Company">
+        <h4>Company</h4>
+        <a href="https://queramusic.in/pvptp.html">Privacy Policy</a>
+        <a href="mailto:quera.indiamusic@gmail.com">Support</a>
+        <a href="https://apps.microsoft.com/detail/9MV19RJ2L1HK" target="_blank" rel="noopener">Microsoft Store</a>
+      </nav>
+
+    </div>
+
+    <div class="footer__bottom">
+      <span class="footer__badge">
+        <i class="fa-solid fa-heart" aria-hidden="true"></i>
+        Engineered in India · Designed for audiophiles
+      </span>
+
+      <p>
+        Developed by <strong>Samarth Dwivedi</strong> &amp; <strong>Quera INDIA LTD</strong>
+        &nbsp;·&nbsp; &copy; 2026 Queramusic.in
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+<!-- Support FAB -->
+<a href="mailto:quera.indiamusic@gmail.com?subject=Quera%20Music%20Premium%20Support&body=Hi%20Quera%20Support%20Team,%0A%0AHow%20can%20we%20help%20you%20today?%0A"
+   class="support-fab"
+   aria-label="Contact Queramusic support">
+  <i class="fa-solid fa-headset" aria-hidden="true"></i>
+</a>
+
+<!-- ============================================================
+     DOWNLOAD MODAL
+     ============================================================ -->
+<div class="modal" id="downloadModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal__backdrop" data-modal-close></div>
+
+  <div class="modal__card">
+
+    <button type="button" class="modal__close" data-modal-close aria-label="Close download window">
+      <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+    </button>
+
+    <div class="modal__head">
+      <h3 id="modalTitle">Download Queramusic</h3>
+      <p>Choose your preferred installation method.</p>
+    </div>
+
+    <div class="modal__primary">
+      <a href="https://get.microsoft.com/installer/download/9mv19rj2l1hk?referrer=appbadge"
+         class="ms-badge" target="_self" rel="noopener">
+        <img src="https://get.microsoft.com/images/en-us%20dark.svg"
+             alt="Get Queramusic from Microsoft" height="60">
+      </a>
+    </div>
+
+    <a href="https://apps.microsoft.com/detail/9MV19RJ2L1HK"
+       class="dl-item" target="_blank" rel="noopener">
+      <span class="dl-item__text">
+        <strong>Microsoft Store</strong>
+        <span>Automatic updates · Recommended</span>
+      </span>
+      <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+    </a>
+
+    <a href="https://drive.google.com/file/d/1SFjnhwnB_4M61hb2ir68RnPM3guuh0w3/view?usp=drive_link"
+       class="dl-item" target="_blank" rel="noopener">
+      <span class="dl-item__text">
+        <strong>64-bit Standalone Installer</strong>
+        <span>97.8 MB · .exe · Windows 10/11</span>
+      </span>
+      <i class="fa-solid fa-download" aria-hidden="true"></i>
+    </a>
+
+    <a href="https://drive.google.com/file/d/1ui2XHSkUQbMi9Jg6CEvHK8SnbWLQjsAe/view?usp=drive_link"
+       class="dl-item" target="_blank" rel="noopener">
+      <span class="dl-item__text">
+        <strong>32-bit Legacy Build</strong>
+        <span>82.4 MB · For older hardware</span>
+      </span>
+      <i class="fa-solid fa-download" aria-hidden="true"></i>
+    </a>
+
+    <p class="modal__foot">
+      Free to use · No account required · No telemetry
+    </p>
+
+  </div>
+</div>
+
+<noscript>
+  <style>
+    .reveal{ opacity:1 !important; transform:none !important; }
+    .hero h1,.hero__lead,.hero__actions,.hero__badge,.hero__meta,.hero__video{
+      opacity:1 !important; animation:none !important;
+    }
+  </style>
+</noscript>
+
+<script>
+(function () {
+  'use strict';
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ==========================================================
+     1. HEADER — scroll state
+     ========================================================== */
+  var header = document.getElementById('siteHeader');
+  var ticking = false;
+
+  function updateHeader() {
+    if (header) header.classList.toggle('is-scrolled', window.scrollY > 16);
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  updateHeader();
+
+  /* ==========================================================
+     2. SCROLL REVEAL
+     ========================================================== */
+  var revealItems = document.querySelectorAll('.reveal');
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealItems.forEach(function (el) { el.classList.add('is-visible'); });
+  } else {
+    var revealObserver = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
         }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
 
-        // Modal Logic
-        const modal = document.getElementById('downloadModal');
-        function openModal(e) { e.preventDefault(); modal.classList.add('active'); }
-        function closeModal() { modal.classList.remove('active'); }
-        if(modal) {
-            modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
-        }
-    </script>
+    revealItems.forEach(function (el) { revealObserver.observe(el); });
+  }
+
+  /* ==========================================================
+     3. MOBILE NAVIGATION
+     ========================================================== */
+  var navToggle  = document.getElementById('navToggle');
+  var mobileMenu = document.getElementById('mobileMenu');
+
+  function setMenu(open) {
+    if (!navToggle || !mobileMenu) return;
+
+    mobileMenu.hidden = false;              // allow transition
+    requestAnimationFrame(function () {
+      mobileMenu.classList.toggle('is-open', open);
+    });
+
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+    navToggle.innerHTML = open
+      ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i>'
+      : '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+  }
+
+  if (navToggle && mobileMenu) {
+    navToggle.addEventListener('click', function () {
+      setMenu(navToggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { setMenu(false); });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) {
+        setMenu(false);
+        navToggle.focus();
+      }
+    });
+  }
+
+  /* ==========================================================
+     4. VIDEO SOUND TOGGLE
+     ========================================================== */
+  var videoWrapper = document.getElementById('videoWrapper');
+  var video        = document.getElementById('promoVideo');
+  var soundToggle  = document.getElementById('soundToggle');
+  var soundLabel   = document.getElementById('soundLabel');
+
+  if (videoWrapper && video && soundToggle) {
+    videoWrapper.addEventListener('click', function () {
+      var nowMuted = !video.muted;
+      video.muted = nowMuted;
+      video.volume = nowMuted ? 0 : 1;
+
+      soundToggle.classList.toggle('is-active', !nowMuted);
+      soundToggle.setAttribute('aria-pressed', String(!nowMuted));
+      soundToggle.setAttribute('aria-label', nowMuted ? 'Unmute video' : 'Mute video');
+
+      soundToggle.querySelector('i').className = nowMuted
+        ? 'fa-solid fa-volume-xmark'
+        : 'fa-solid fa-volume-high';
+
+      if (soundLabel) soundLabel.textContent = nowMuted ? 'Sound off' : 'Sound on';
+    });
+  }
+
+  /* ==========================================================
+     5. MODAL — open / close / focus trap
+     ========================================================== */
+  var modal       = document.getElementById('downloadModal');
+  var lastFocused = null;
+  var FOCUSABLE   = 'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+  function scrollbarWidth() {
+    return window.innerWidth - document.documentElement.clientWidth;
+  }
+
+  function openModal() {
+    if (!modal) return;
+    lastFocused = document.activeElement;
+
+    modal.classList.add('is-open');
+    document.body.classList.add('is-locked');
+
+    // Prevent layout shift when the scrollbar disappears
+    var pad = scrollbarWidth();
+    if (pad > 0) document.body.style.paddingRight = pad + 'px';
+
+    var first = modal.querySelector(FOCUSABLE);
+    if (first) window.setTimeout(function () { first.focus(); }, 60);
+  }
+
+  function closeModal() {
+    if (!modal || !modal.classList.contains('is-open')) return;
+
+    modal.classList.remove('is-open');
+    document.body.classList.remove('is-locked');
+    document.body.style.paddingRight = '';
+
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+  }
+
+  document.querySelectorAll('[data-modal-open]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      setMenu(false);
+      openModal();
+    });
+  });
+
+  document.querySelectorAll('[data-modal-close]').forEach(function (el) {
+    el.addEventListener('click', closeModal);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (!modal || !modal.classList.contains('is-open')) return;
+
+    if (e.key === 'Escape') {
+      closeModal();
+      return;
+    }
+
+    if (e.key === 'Tab') {
+      var nodes = Array.prototype.filter.call(
+        modal.querySelectorAll(FOCUSABLE),
+        function (n) { return n.offsetParent !== null; }
+      );
+      if (!nodes.length) return;
+
+      var first = nodes[0];
+      var last  = nodes[nodes.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  /* ==========================================================
+     6. CARD POINTER GLOW (progressive enhancement)
+     ========================================================== */
+  if (!reduceMotion && window.matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('.card').forEach(function (card) {
+      card.addEventListener('pointermove', function (e) {
+        var rect = card.getBoundingClientRect();
+        card.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width * 100) + '%');
+        card.style.setProperty('--my', ((e.clientY - rect.top) / rect.height * 100) + '%');
+      });
+    });
+  }
+
+})();
+</script>
+
 </body>
 </html>
